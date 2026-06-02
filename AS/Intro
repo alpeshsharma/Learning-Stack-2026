@@ -1,0 +1,53 @@
+Hello sir, my name is Alpesh Sharma.
+I am currently working as a Software Engineer at Humanitics Dimensions.
+I have around 3 years of experience in full-stack development using Angular, Node.js, and PostgreSQL.
+
+In my current role, I mainly work on building government platforms where I have worked on workflow systems and dynamic forms.
+I have strong experience in Angular development, where I have built reusable components, directives, and optimized performance.
+I also have good understanding of JavaScript concepts, which I use regularly in my projects.
+
+Along with that, I have worked on integrating REST APIs and improving application performance.
+
+Currently, I am looking for opportunities where I can work on scalable applications and  further improve my tech skills.
+If I get the opportunity, I will try my best to make the utmost contribution to the organization.
+
+								********************************************************************
+
+Project: M1 Meghalaya Portal
+Client: Government of Meghalaya
+Role: Full Stack Developer
+
+I have worked on many projects, but currently, I am working on the M1 Meghalaya Portal for the Government of Meghalaya.
+
+Project Overview:
+
+The project consists of two main portals:
+
+Citizen Portal
+Department Portal
+Objective:
+
+The main goal of this project is to provide a single-window solution for both citizens and government officers:
+
+For Citizens: Access various government schemes and services.
+For Officers: Efficiently manage daily operations, file creation, and financial approvals.
+Key Features:
+Citizen Signup: Citizens can sign up using Ration Card or Voter ID and apply for different schemes.
+Scheme Flow: Each scheme has a different process flow, and files are sent to various government officers at different levels for approval.
+Hierarchical Approval: The portal supports different levels of officers who handle approvals based on the scheme or file.
+Dashboard & Reports: Created dashboards for monitoring and managing workflows. Generated detailed reports for officers.
+Large Data Handling: Optimized the system to handle large amounts of data efficiently.
+
+                            ********************************************************************
+
+I worked on an offline-first government field operations platform for Meghalaya, designed for low-network areas. 
+I used IndexedDB with Dexie.js to store over 100K+ citizen records locally, allowing full offline functionality.
+
+I built 25+ service and survey forms for various government schemes and implemented a background sync system with conflict 
+resolution for smooth offline-to-online data sync.
+
+I also added geolocation tracking for field visits, developed a dashboard, admin panel, and field workflows,
+and implemented attendance tracking for field officers.
+
+On the backend, I optimized Node.js APIs and overall application performance, ensuring 
+smooth usage even in low-connectivity regions.

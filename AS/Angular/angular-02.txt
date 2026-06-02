@@ -1,0 +1,199 @@
+🔵 What is Component?
+Basic building block of angular UI.
+its a reusable piece of code.
+show html
+apply CSS
+handle logic
+data manage easily.
+
+ng generate component header
+component have 4 files:
+header.component.ts             ----> TypeScript file(Variables, fucntions, Event handling)
+header.component.html           ----> Template UI
+header.component.css            ----> Component Styling
+header.component.spec.ts        ----> Testing file
+
+➡️Selector:- whenever we create any component then we use easily in another component <app-header></app-header>
+selector: 'app-header'
+
+@Component({
+ selector: 'app-header',
+ templateUrl: './header.component.html',
+ styleUrls: ['./header.component.css']
+})
+
+How Component Works?
+TS file → data define
+HTML → data display
+CSS → style apply
+Selector → use in another component
+
+Root Component:- Starting component of angular app (AppComponent), load initital point
+
+🔵Component Communication:- Exchange the data between in any 2 component
+➡️A. Parent to Child → @Input()
+whenever we send the data from parent to child.
+
+// parent HTML
+<app-child [name]='ravi'></app-child>
+
+// child HTML
+<h5>{{name}}</h5>
+
+// child TS
+@Input() name = ' ';
+
+
+➡️B. Child to Parent → @Output() with EventEmitter
+
+// child HTML
+<button (click)="saveUser()"></button>
+
+// child TS
+@Output sendData = new EventEmitter<string>();
+
+let name = 'mahendra';
+saveUser(){
+    this.sendData.emit(this.name);
+}
+
+// Parent HTML
+<app-child (sendData)="getParentData($event)"> </app-child>
+<h5>{{recievedData}}</h5>
+
+// Parent TS
+let recievedData:any=null;
+getParentData(data?:string){
+    this.recievedData = data;
+}
+
+➡️@ViewChild() (Call Child Method from Parent)
+Used when parent want to access child properties/methods.
+Instead of child sending data to parent, @ViewChild() lets the parent directly talk to the child.
+
+// child TS
+let message = 'hello from chid component';
+
+showMessage(){
+    return this.message;
+}
+
+// parent HTML
+<app-child></app-child>
+
+// Parent TS
+import {childComponent} from './child.component';
+
+@ViewChild(childComponent) child! : childComponent;
+
+ngAfterViewInit(){
+    console.log(this.child.showMessage());
+}
+
+🔵What is the Angular lifecycle?
+Angular lifecycle is the series of stages a component passes through, along with lifecycle hook methods that run at each stage
+Main lifecycle phases
+1. Creation phase
+ngOnChanges() → runs when input data changes
+ngOnInit() → runs once after component is created
+2. Change Detection phase
+ngDoCheck() → runs on every change detection
+3. Rendering phase
+ngAfterContentInit() → after content is loaded
+ngAfterContentChecked() → after content is checked
+ngAfterViewInit() → after view (HTML) is loaded
+ngAfterViewChecked() → after view is checked
+4. Destruction phase
+ngOnDestroy() → runs before component is destroyed
+
+
+➡️ngOnInit():- after component initialize ngOnInit will run.
+basically it is used for intitial data load.
+
+➡️ngOnChanges() → runs when input data changes
+whenever we send data from parent to child that time use we use in child component.
+
+➡️ngAfterContnetInit():
+whenever we send any html content data from parent compoennt to child component --> Content Projection
+
+parent.comp.html
+<app-info-panel>
+  <p #projectedText>
+    This content is coming from Parent
+  </p>
+</app-info-panel>
+
+#projectedText - template reference variable of DOM
+
+
+child.comp.html
+<div>
+  <h3>Child Component</h3>
+  <ng-content></ng-content>
+</div>
+
+child.comp.ts
+@ContentChild('projectedText') projectedText!: ElementRef; 
+
+ContentChild -- searching the reference variable in projected DOM
+ng-content -- render the data in html
+
+ngAfterContentInit(): void {
+  console.log('ngAfterContentInit called');
+  if (this.projectedText) {
+    console.log(this.projectedText.nativeElement);
+  }
+}
+
+
+➡️ ngAfterViewInit():
+if we want HTML element reference 
+
+<input #myInput type="text" placeholder="Enter your name">
+<button (click)="logValue()">Log Value</button>
+
+ @ViewChild('myInput') input!: ElementRef;
+  ngAfterViewInit(): void {
+    this.input.nativeElement.focus(); // autofocus
+    this.input.nativeElement.style.border = '2px solid blue';
+  }
+
+  logValue() {
+    console.log(this.input.nativeElement.value);
+  }
+  
+➡️ What are template reference variables?
+#name it is a way to access DOM
+
+➡️ What is ng-container?
+ng-container means invisible wrapper 
+
+<h *ngIf="logIn">Welcome </h>
+<p *ngIf="logIn"> user log in </p
+
+<div *ngIf="logIn">
+<h>Welcome </h>
+<p> user log in </p
+</div
+
+<ng-container *ngIf="logIn">
+<h>Welcome </h>
+<p> user log in </p
+</ng-container>
+
+div, p, h1 tags will be show in DOM but ng-container is not show in DOM 
+if we are using ng-container then not need to use extra div
+
+➡️A constructor is a special function that runs when an object is created using new and is used to initialize the object.
+class Person{
+	constructor(name,age){
+		this.name = name;
+		this.age = age;
+	}
+	
+	greet(){
+		console.log("my name is " + this.name);
+	}
+}
+const p1 = new Person("Ankit",20);
+p1.greet();

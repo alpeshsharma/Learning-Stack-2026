@@ -1,0 +1,12 @@
+A service is a class that contains business logic, reusable functions.
+
+Why Services are Used?
+Reusability:- Same service can be used in multiple components
+Maintainability:- Easier to debug and update
+    
+Dependency Injection - Angular has a built-in DI system.
+Instead of a class creating its own dependencies, those dependencies are “injected” into it from outside.
+
+when you use any service and use in component (by the help of constructor) its means injection
+whatever process happen bewteen service and component its means injecting
+after creating dependencies and provide to the component that part will be called injector

@@ -1,0 +1,732 @@
+===============================
+JAVASCRIPT OOPS FULL NOTES
+(Interview Ready + Story Style)
+===============================
+
+
+---------------------------------------------------
+1. OOPs Kya Hota Hai?
+---------------------------------------------------
+
+OOPs = Object Oriented Programming
+
+Programming ko real world objects ki tarah likhna.
+
+Example:
+Car, Student, BankAccount etc.
+
+Main concepts:
+
+1. Class
+2. Object
+3. Encapsulation
+4. Abstraction
+5. Inheritance
+6. Polymorphism
+
+
+===================================================
+2. CLASS
+===================================================
+
+Definition:
+
+Class is a blueprint/template used to create objects.
+
+Hindi:
+Class ek design/naksha hota hai.
+
+Jaise:
+Car ka blueprint.
+
+Actual car nahi hoti.
+Sirf design hota hai.
+
+Example:
+
+class Car {
+  constructor(brand, color) {
+    this.brand = brand;
+    this.color = color;
+  }
+
+  start() {
+    console.log(`${this.brand} started`);
+  }
+}
+
+---------------------------------------------------
+Important Points
+---------------------------------------------------
+
+- class = blueprint
+- object banane ke liye use hoti hai
+
+
+===================================================
+3. OBJECT
+===================================================
+
+Definition:
+
+Object is an instance of a class.
+
+Hindi:
+Object real thing hoti hai.
+
+Example:
+
+const car1 = new Car("BMW", "Black");
+
+Yaha:
+car1 = object
+
+
+===================================================
+4. CONSTRUCTOR
+===================================================
+
+Definition:
+
+Constructor is a special method that runs automatically when object is created.
+
+Example:
+
+constructor(name) {
+  this.name = name;
+}
+
+Use:
+Object create hote hi initialization.
+
+
+===================================================
+5. THIS KEYWORD
+===================================================
+
+Definition:
+
+this refers to current object.
+
+Example:
+
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+
+  sayHi() {
+    console.log(this.name);
+  }
+}
+
+const u = new User("Rahul");
+
+u.sayHi();
+
+Output:
+Rahul
+
+
+===================================================
+6. ENCAPSULATION
+===================================================
+
+Definition:
+
+Wrapping data and methods together into a single unit is called encapsulation.
+
+Hindi:
+Data aur methods ko ek box me pack kar dena.
+
+Example:
+
+class BankAccount {
+  constructor(balance) {
+    this.balance = balance;
+  }
+
+  deposit(amount) {
+    this.balance += amount;
+  }
+}
+
+const acc = new BankAccount(1000);
+
+acc.deposit(500);
+
+console.log(acc.balance);
+
+Output:
+1500
+
+
+===================================================
+7. ABSTRACTION
+===================================================
+
+Definition:
+
+Hiding internal implementation and showing only important features.
+
+Real Life Example:
+
+Car chalate ho.
+Engine ka internal mechanism nahi pata.
+Sirf steering aur brake use karte ho.
+
+Example:
+
+class CoffeeMachine {
+  startMachine() {
+    this.#boilWater();
+
+    console.log("Coffee Ready");
+  }
+
+  #boilWater() {
+    console.log("Boiling Water...");
+  }
+}
+
+const c = new CoffeeMachine();
+
+c.startMachine();
+
+Output:
+Boiling Water...
+Coffee Ready
+
+
+===================================================
+8. INHERITANCE
+===================================================
+
+Definition:
+
+Inheritance is an OOP concept where one class acquires the properties and methods of another class.
+
+Hindi:
+Ek class dusri class ki powers use karti hai.
+
+---------------------------------------------------
+Keyword:
+---------------------------------------------------
+
+extends
+
+---------------------------------------------------
+Example:
+---------------------------------------------------
+
+class Animal {
+  eat() {
+    console.log("Eating...");
+  }
+}
+
+class Dog extends Animal {
+  bark() {
+    console.log("Barking...");
+  }
+}
+
+const d = new Dog();
+
+d.eat();
+
+d.bark();
+
+Output:
+Eating...
+Barking...
+
+
+===================================================
+9. TYPES OF INHERITANCE
+===================================================
+
+
+---------------------------------------------------
+1. Single Inheritance
+---------------------------------------------------
+
+Ek parent → ek child
+
+Animal
+   ↓
+  Dog
+
+Example:
+
+class Animal {}
+
+class Dog extends Animal {}
+
+
+---------------------------------------------------
+2. Multilevel Inheritance
+---------------------------------------------------
+
+Chain structure.
+
+Animal
+   ↓
+  Dog
+   ↓
+ Puppy
+
+Example:
+
+class Animal {
+  eat() {
+    console.log("eat");
+  }
+}
+
+class Dog extends Animal {
+  bark() {
+    console.log("bark");
+  }
+}
+
+class Puppy extends Dog {
+  cute() {
+    console.log("cute");
+  }
+}
+
+const p = new Puppy();
+
+p.eat();
+p.bark();
+p.cute();
+
+
+---------------------------------------------------
+3. Hierarchical Inheritance
+---------------------------------------------------
+
+One parent → multiple children
+
+        Animal
+       /      \
+     Dog      Cat
+
+Example:
+
+class Animal {
+  eat() {
+    console.log("eat");
+  }
+}
+
+class Dog extends Animal {
+  bark() {
+    console.log("bark");
+  }
+}
+
+class Cat extends Animal {
+  meow() {
+    console.log("meow");
+  }
+}
+
+
+---------------------------------------------------
+4. Multiple Inheritance
+---------------------------------------------------
+
+JavaScript directly support nahi karta.
+
+A + B → C
+
+Not supported in JS classes.
+
+Use:
+Mixins/Composition
+
+
+===================================================
+10. POLYMORPHISM
+===================================================
+
+Definition:
+
+Polymorphism means one thing many forms. means same method but different behavior.
+
+Hindi:
+Same method different behavior show kare.
+
+---------------------------------------------------
+Real Life Example
+---------------------------------------------------
+
+Same button:
+START
+
+Different behavior:
+- Car starts
+- Bike starts
+- Bus starts
+
+---------------------------------------------------
+Example
+---------------------------------------------------
+
+class Animal {
+  sound() {
+    console.log("Animal sound");
+  }
+}
+
+class Dog extends Animal {
+  sound() {
+    console.log("Dog barks");
+  }
+}
+
+class Cat extends Animal {
+  sound() {
+    console.log("Cat meows");
+  }
+}
+
+const d = new Dog();
+const c = new Cat();
+
+d.sound();
+c.sound();
+
+Output:
+Dog barks
+Cat meows
+
+
+===================================================
+11. METHOD OVERRIDING (Run time)
+===================================================
+
+Definition:
+
+When child class provides its own implementation of parent method.
+
+Example:
+
+class Animal {
+  sound() {
+    console.log("Animal sound");
+  }
+}
+
+class Dog extends Animal {
+  sound() {
+    console.log("Dog bark");
+  }
+}
+
+const d = new Dog();
+
+d.sound();
+
+Output:
+Dog bark
+
+
+===================================================
+12. SUPER KEYWORD
+===================================================
+
+Definition:
+
+Used to access parent class methods.
+
+Example:
+
+class Animal {
+  sound() {
+    console.log("Animal sound");
+  }
+}
+
+class Dog extends Animal {
+  sound() {
+    super.sound();
+
+    console.log("Dog bark");
+  }
+}
+
+const d = new Dog();
+
+d.sound();
+
+Output:
+Animal sound
+Dog bark
+
+
+===================================================
+13. METHOD OVERLOADING
+===================================================
+
+Definition:
+
+Same method with different parameters.
+
+IMPORTANT:
+
+JavaScript me true method overloading nahi hota.
+
+---------------------------------------------------
+Wrong Example
+---------------------------------------------------
+
+class MathOperation {
+  sum(a, b) {
+    console.log(a + b);
+  }
+
+  sum(a, b, c) {
+    console.log(a + b + c);
+  }
+}
+
+Second method first ko overwrite kar deta hai.
+
+---------------------------------------------------
+Correct Way in JavaScript
+---------------------------------------------------
+
+Use Rest Operator
+
+class MathOperation {
+  sum(...nums) {
+    let total = 0;
+
+    for (let n of nums) {
+      total += n;
+    }
+
+    console.log(total);
+  }
+}
+
+const m = new MathOperation();
+
+m.sum(1,2);
+
+m.sum(1,2,3);
+
+m.sum(1,2,3,4);
+
+Output:
+3
+6
+10
+
+
+===================================================
+14. STATIC METHOD
+===================================================
+
+Definition:
+
+Method that belongs to class not object.
+
+Example:
+
+class MathUtil {
+  static add(a, b) {
+    return a + b;
+  }
+}
+
+console.log(MathUtil.add(2,3));
+
+Output:
+5
+
+
+===================================================
+15. GETTER & SETTER
+===================================================
+
+Used to control access.
+
+Example:
+
+class Person {
+  constructor(name) {
+    this._name = name;
+  }
+
+  get name() {
+    return this._name;
+  }
+
+  set name(value) {
+    this._name = value;
+  }
+}
+
+const p = new Person("Rahul");
+
+console.log(p.name);
+
+p.name = "Amit";
+
+console.log(p.name);
+
+
+===================================================
+16. PROTOTYPE
+===================================================
+
+JavaScript internally prototype-based language hai.
+
+Methods prototype me store hote hain.
+
+Example:
+
+class User {
+  sayHi() {
+    console.log("Hi");
+  }
+}
+
+console.log(User.prototype);
+
+
+===================================================
+17. DIFFERENCE BETWEEN CLASS & OBJECT
+===================================================
+
+CLASS:
+- Blueprint
+- Template
+- Logical entity
+
+OBJECT:
+- Real instance
+- Physical entity
+- Takes memory
+
+
+===================================================
+18. DIFFERENCE BETWEEN OVERRIDING & OVERLOADING
+===================================================
+
+OVERRIDING:
+- Child changes parent method
+- Runtime polymorphism
+
+OVERLOADING:
+- Same method different params
+- JS me true support nahi
+
+
+===================================================
+19. WHY USE OOPS?
+===================================================
+
+1. Reusable code
+2. Easy maintenance
+3. Better structure
+4. Scalable applications
+5. Less duplication
+
+
+===================================================
+20. FULL BIG INTERVIEW EXAMPLE
+===================================================
+
+class Employee {
+  constructor(name) {
+    this.name = name;
+  }
+
+  work() {
+    console.log(`${this.name} is working`);
+  }
+}
+
+class Developer extends Employee {
+  work() {
+    console.log(`${this.name} is coding`);
+  }
+}
+
+class Manager extends Employee {
+  work() {
+    console.log(`${this.name} is managing team`);
+  }
+}
+
+const dev = new Developer("Rahul");
+
+const mgr = new Manager("Amit");
+
+dev.work();
+
+mgr.work();
+
+Output:
+Rahul is coding
+Amit is managing team
+
+
+===================================================
+21. 30 SECOND INTERVIEW ANSWER
+===================================================
+
+OOPs is a programming paradigm based on classes and objects.
+
+Class is a blueprint and object is an instance of class.
+
+Main concepts are:
+- Encapsulation
+- Abstraction
+- Inheritance
+- Polymorphism
+
+Inheritance provides code reuse,
+Encapsulation binds data and methods,
+Abstraction hides internal details,
+Polymorphism allows one method to behave differently.
+
+
+===================================================
+22. MEMORY TRICK (NEVER FORGET)
+===================================================
+
+CLASS:
+Blueprint of car
+
+OBJECT:
+Real car
+
+ENCAPSULATION:
+Medicine capsule
+
+ABSTRACTION:
+Driving car without knowing engine
+
+INHERITANCE:
+Child getting parent properties
+
+POLYMORPHISM:
+Same button different behavior
+
+OVERRIDING:
+Child changes parent method
+
+OVERLOADING:
+Same method many styles
+
+
+========================
+END OF NOTES
+========================
+```

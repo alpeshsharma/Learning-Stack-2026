@@ -1,0 +1,59 @@
+🔵What are directives? & Types of directives?
+Directive - in angular is class that add behavior to HTML elements
+in simple words, DOM mainipulation or behavior control.
+
+DOM - Whenever we write HTML, the browser parses it, creates a DOM tree, and then renders the content on the screen using that DOM
+angular use directive to,
+show/hide elements
+change styles
+types of directive
+
+➡️Component directive is a type of directive that has its own template (HTML), styles, and logic, and is used to create 
+  UI elements in Angular applications.
+➡️Structural directive -> change the structure of DOM means show and hide the elements
+A. *ngIf
+Used to show/hide elements based on condition.
+
+B. *ngFor
+Used to repeat elements from array.
+<li *ngFor="let user of users">
+  {{user}}
+</li>
+
+➡️Attribute directive -> change look/style/behavior of existing element.
+Do not add/remove DOM.
+
+Examples:
+ngClass
+ngStyle
+
+ngFor vs trackBy
+
+users = [
+ {id:1, name:'Ankit'},
+ {id:2, name:'Ravi'},
+ {id:3, name:'Rohit'}
+]
+
+ngFor:-  When we want to iterate list that time used ngFor.
+<li *ngFor = "let us of users">
+        {{us.name}}
+</li>
+
+
+if ravi name updated --> ravi kumar
+
+Without trackBy - in angular mostly compare object Reference
+so angular can recreates multiples dom nodes
+means, unnecessary dom Operation happening.
+
+with trackBy
+<li *ngFor="let user of users; trackBy: trackById">
+
+trackById(index:number, user:any){
+  return user.id;
+}
+
+Fast rendering
+less DOM load
+Better performance

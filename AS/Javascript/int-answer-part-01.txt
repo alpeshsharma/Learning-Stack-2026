@@ -1,0 +1,302 @@
+Ans: 16 
+================================================
+Higher-Order Function
+A higher-order function is a function that takes another function as an argument or returns a function.
+map & filter ----> these are also higher order function.
+
+Example 1:
+function showName(name){
+    return "hi " + name;
+}
+
+function processUser(fn){
+    console.log(fn('amit'))
+}
+
+processUser(showName)                        // hi amit
+
+
+Exmaple 2:
+function outerFunction(){
+
+    return function(){
+        console.log('hi amit')
+    }
+}
+
+const result = outerFunction();
+result();                                   // hi amit
+
+=================================================
+
+Ans 17: map() vs forEach()
+
+“map() is used to transform each element and returns a new array.”
+
+“forEach() is used to iterate over an array without returning a new array.”
+
+Example 1:
+const arr = [1,2,3];
+
+const result = arr.map((num)=>{
+    return num * 2;
+})
+
+console.log(result);                       // [2,4,6]
+
+const users = ['amit', 'rahul'];
+
+const result = users.map((name)=>{
+    return name.toUpperCase()
+})
+
+console.log(result);                       // [AMIT, RAHUL]
+
+
+Example 2:
+const numbers = [1, 2, 3];
+numbers.forEach((num) => {
+    console.log(num * 2);
+});                                       // 2 4 6
+
+
+=====================================================
+
+Ans 18: filter() vs find()
+
+“filter() returns all matching elements in a new array.”
+
+“find() returns the first matching element.”
+
+Example 1:
+const numbers = [1,2,3,4,5,6];
+const evenNumbers = numbers.filter((num)=>{
+    return num % 2 === 0;
+});
+
+console.log(evenNumbers);                       // [2,4,6]
+
+Example 2:
+const numbers = [1,2,3,4,5,6];
+const result = numbers.find((num)=>{
+    return num % 2 === 0;
+});
+
+console.log(result);                               // 2
+
+Example 3:
+const users = [
+   {name:'Amit', active:true},
+   {name:'Rahul', active:false},
+   {name:'Neha', active:true}
+];
+
+const activeUsers = users.filter((user)=>{
+    return user.active;
+});
+
+console.log(activeUsers);                           // [{name:'Amit', active:true},{name:'Neha', active:true}]
+
+Example 4:
+const users = [
+   {id:1, name:'Amit'},
+   {id:2, name:'Rahul'}
+];
+
+const user = users.find((user)=>{
+    return user.id === 2;
+});
+
+console.log(user);                                  // {id:2, name:'Rahul'}
+
+=====================================================
+
+Ans 19: reduce()
+reduce() is used to combine all array elements into one final value
+
+const numbers = [1,2,3,4];
+const result = numbers.reduce((acc, curr)=>{
+    return acc + curr;
+}, 0);
+
+console.log(result);                                // 10
+
+
+=======================================================
+
+Ans 20:  What is debounce?
+
+Debounce is a technique that delays function execution until the event stops firing for a specific time.
+It is commonly used in search inputs to avoid multiple API calls while typing.
+
+function debounce(fn, delay){
+   let timer;
+   return function(){
+      clearTimeout(timer);
+      timer = setTimeout(()=>{
+         fn();
+      }, delay);
+   }
+}
+
+How debounce works internally?
+Debounce internally uses setTimeout and clearTimeout.
+
+
+Ans 21: What is Throttling
+Throttling limits the number of function executions within a specific time interval.
+“Kitni bhi baar event aaye, function fixed time ke baad hi chale.”
+
+It is mainly used in scroll and resize events for performance optimization
+
+Debounce
+👉 “User rukega tab function chalega”
+
+Throttle
+👉 “Function fixed interval pe chalega”
+
+function throttle(fn, delay){
+   let flag = true;
+
+   return function(){
+      if(flag){
+         fn();
+         flag = false;
+         setTimeout(()=>{
+            flag = true;
+         }, delay);
+      }
+   }
+}
+
+Memoization:-
+
+Memoization in JavaScript is a technique to make functions faster by remembering previously computed results.
+
+Think of it like this:
+
+“If I already solved this exact problem once, why calculate it again?”
+
+Memoization means:
+Run function once
+Store result in memory (cache)
+Next time same input comes → return stored result
+Instead of recalculating.
+
+
+===============================
+ WITHOUT MEMOIZATION
+===============================
+
+function add(num) {
+  console.log("Calculating...");
+  return num + 10;
+}
+
+console.log(add(5)); // Calculating... 15
+console.log(add(5)); // Calculating... 15
+
+/*
+Problem:
+Same input (5) hone ke baad bhi
+function dubara calculate kar raha hai.
+*/
+
+
+
+ ===============================
+ WITH MEMOIZATION
+ ===============================
+
+function memoizedAdd() {
+  let cache = {}; // result store karne ke liye
+
+  return function (num) {
+
+    // Agar answer already saved hai
+    if (cache[num]) {
+      console.log("From cache");
+      return cache[num];
+    }
+
+    // Agar saved nahi hai to calculate karo
+    console.log("Calculating...");
+    let result = num + 10;
+
+    // Result save kar do
+    cache[num] = result;
+
+    return result;
+  };
+}
+
+const addWithMemo = memoizedAdd();
+
+console.log(addWithMemo(5));  // Calculating... 15
+console.log(addWithMemo(5));  // From cache 15
+console.log(addWithMemo(10)); // Calculating... 20
+console.log(addWithMemo(10)); // From cache 20
+
+
+
+setTimeout()  → runs after a delay
+setInterval() → runs repeatedly
+setImmediate() → runs immediately after current execution
+
+setImmediate() is a Node.js asynchronous method that executes a callback immediately after the current execution completes, 
+in the next iteration of the event loop.
+
+“Abhi nahi, current code ke turant baad”
+
+console.log("Start");
+setImmediate(() => {
+  console.log("setImmediate");
+});
+console.log("End");
+
+Start
+End
+setImmediate
+
+
+localStorage:
+- Data persists in the browser
+- Switch tabs or close/open the browser → data remains
+- Stays until manually cleared
+- Accessible across all tabs of the same origin
+- Storage: ~5 MB
+- Use case: theme, preferences, remember settings
+
+sessionStorage:
+- Data exists only for the current tab/session
+- Refresh the page → data remains
+- Open a new tab or close the tab/browser → data is deleted
+- Not accessible in other tabs
+- Storage: ~5 MB
+- Use case: temporary form data, OTP flow, checkout state
+
+
+Cookies:
+- Small pieces of data stored in the browser
+- Sent automatically with every HTTP request to the server
+- Can have an expiry time (session or persistent)
+- Can be deleted manually or expire automatically
+- Storage: ~4 KB (much smaller than local/session storage)
+- Accessible across tabs of the same origin
+
+Types:
+1. Session Cookies
+   - Deleted when browser closes
+
+2. Persistent Cookies
+   - Stay until expiry date or manual deletion
+
+Use case:
+- Authentication/Login sessions
+- Remember user login
+- Tracking & analytics
+- User preferences
+
+Difference:
+- localStorage/sessionStorage → client-side only
+- Cookies → browser + server communication

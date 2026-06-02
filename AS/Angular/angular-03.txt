@@ -1,0 +1,74 @@
+🔵What is a template?
+Template is the HTML view of a component where we bind and display data.
+component-name.component.html  -------> File
+
+🔵 What is data binding?
+➡️ Types of data binding in Angular?
+Data binding - bind the data in frontend
+one way binding: - data flow in one direction now, either it can flow component to view or view to component
+two way binding: - data flow in both direction
+types of data binding 
+- interpolation {{name}}                  (Component → View)
+- propery binding [src]="imageUrl"         (Component → View)
+- event binding (click)="save()"           (View → Component)
+- two way binding [(ngModel)]="name"
+
+
+🔵 What are Pipes (Angular)?
+Pipes are used to transform data in the template without changing the original value.
+Built-in Pipes
+(1)date
+(2)uppercase
+(3)lowercase
+(4)currency
+
+Custom pipe:
+
+@Pipe({
+name:'purePipe',
+pure:true
+})
+export class purePipe{
+	transform(value:string){	
+		return value.toUpperCase();
+	}
+}
+
+use in html like this 
+{{ name | purePipe }}
+
+➡️Types of Pipes:
+(1) Pure pipe: - runs only when Angular detects a pure change in input, its a basically default pipe.
+(2) Impure pipe: - runs on every change detection cycle, even if input does not change.
+
+Impure Pipe Examples:------------
+
+example 1: 
+Real Time clock
+@Pipe({
+  name: 'timePipe',
+  pure: false
+})
+export class TimePipe {
+  transform(): string {
+    return new Date().toLocaleTimeString();
+  }
+}
+
+<p>{{ '' | timePipe }}</p>
+
+example 2:
+@Pipe({
+  name: 'activeUsers',
+  pure: false
+})
+export class ActiveUsersPipe {
+  transform(users: any[]) {
+    console.log("Filtering users again");
+    return users.filter(user => user.active);
+  }
+}
+
+<li *ngFor="let user of users | activeUsers">
+  {{ user.name }}
+</li>

@@ -1,0 +1,814 @@
+🔵What is JavaScript ? 
+JavaScript is programming language that makes web pages interactive
+JavaScript is synchronous and single-threaded by nature, but it can handle asynchronous operations 
+using browser APIs and the event loop.
+
+Think of a website like a car:
+
+HTML = structure (body of car)
+CSS = design (color, styling)
+JavaScript = engine (makes it move)
+
+Example:
+
+Button click → show popup
+Form submit → validate input
+Scroll → load more data
+
+🔵How JavaScript Works in the Browser
+
+JavaScript itself is single-threaded & synchronous (by default) - code run line by line.
+That means:
+It can do one thing at a time
+It has one Call Stack
+It executes code line by line
+
+>> What is V8?
+V8 is Google’s JavaScript engine used in: chrome, edge
+
+Its job:
+Parse JS code
+Convert to machine code
+
+Read JS code
+Parse it
+Compile it
+Execute it
+
+Inside V8:
+🔵when JavaScript code run then divide into two phase
+JavaScript code run hota hai
+            ↓
+Execution Context create hota hai
+            ↓ 
+Execution Context ke 2 phases:
+            ↓ 
+1. Memory Creation Phase
+   - variables → undefined
+   - functions → memory me store
+
+2. Code Execution Phase
+   - code line by line execute
+   - function call hone par
+     uska execution context
+     call stack me aata hai     
+
+Memory Heap → stores variables / objects
+Call Stack → executes functions
+
+>> Call Stack (LIFO)
+LIFO = Last In First Out
+A stack where functions are executed.
+
+JavaScript engine does NOT have built-in timers, DOM, fetch, etc.
+Browser provides them.
+
+Examples:
+setTimeout()
+setInterval()
+DOM events (click)
+fetch()
+localStorage
+Geolocation
+These are called Web APIs
+
+>> Callback Queue (Macrotask Queue)
+When async tasks finish, callback goes to queue.
+FIFO = First In First Out
+
+Examples:
+setTimeout
+setInterval
+DOM click events
+
+Event Loop
+The Event Loop watches:
+Is Call Stack empty?
+If YES:
+➡️ Takes first callback from queue
+➡️ Pushes into Call Stack
+This repeats forever.
+
+Example:
+console.log("Start");
+
+setTimeout(() => {
+   console.log("Timer");
+}, 0);
+
+console.log("End");
+
+
+Step 1: console.log("Start"); ---------------- Runs immediately.
+Step 2: setTimeout(...)       ---------------- Moves to Web API timer.
+Step 3: console.log("End");   ---------------- Runs immediately.
+Step 4: Timer complete → callback enters queue. 
+Step 5: Stack empty → Event Loop pushes callback. 
+
+
+                    JS Code
+                        ↓
+                    JavaScript Engine
+                        ↓
+                    Call Stack executes synchronous code
+                        ↓
+                    Async tasks go to Web APIs
+                        ↓
+                    Completed callbacks move to Queue
+                        ↓
+                    Event Loop checks stack
+                        ↓
+                    Moves callback to stack when empty
+
+
+🔵Var vs Let vs Const
+var - old way, function scoped, re-declare allowed
+let - blocked scoped, not re-declare, update
+const - block scoped, not re-declare, update
+
+| Feature    | var           | let     | const   |
+| ---------- | ------------- | ------- | ------- |
+| Scope      | function      | block   | block   |
+| Re-declare | ✅             | ❌       | ❌       |
+| Update     | ✅             | ✅       | ❌       |
+| Hoisting   | ✅ (undefined) | ✅ (TDZ) | ✅ (TDZ) |
+
+📦 SCOPE IN JAVASCRIPT
+👉 Scope means:
+Accessibility + Visibility of variables
+
+Yani:
+Kis variable ko kaha se access/use kar sakte ho.
+
+1. Global Scope
+Pure program me accessible
+
+let hero = "Shaktimaan";
+
+function room1() {
+  console.log(hero); // ✅ accessible
+}
+
+function room2() {
+  console.log(hero); // ✅ accessible
+}
+
+room1();
+room2();
+
+
+2. Function Scope
+Variable sirf function ke andar accessible
+
+Example 1:
+function room() {
+  let secret = "Chocolate";
+  console.log(secret); // ✅ accessible
+}
+
+room();
+
+// console.log(secret); ❌ Error
+// Kyuki secret function ke bahar visible nahi hai
+
+Example 2:
+function hello() {
+    var name = "John";
+    if (true) {
+        var age = 20;
+    }
+    console.log(name); // works
+    console.log(age);  // also works
+}
+hello();
+
+3. Block Scope
+let & const sirf { } ke andar accessible
+
+Example 1:
+{
+  let money = 5000;
+  console.log(money); // ✅ accessible
+}
+
+// console.log(money); ❌ Error
+
+Example 2:
+function hello() {
+    if (true) {
+        let age = 20;
+        console.log(age); // works
+    }
+    console.log(age); // ERROR
+}
+
+hello();
+
+
+4. Lexical Scope: When inner function access the outer function variable is called lexical scope
+Inner function outer function ki cheeze access kar sakta hai
+
+function father() {
+  let car = "BMW";
+
+  function son() {
+    console.log(car); // ✅ accessible
+  }
+
+  son();
+}
+
+father();
+
+🎬 SUMMARY
+
+1. Global Scope
+   → Har jagah accessible
+
+2. Function Scope
+   → Sirf function ke andar accessible
+
+3. Block Scope
+   → Sirf { } block ke andar accessible
+
+4. Lexical Scope
+   → Inner function outer variable access kar sakta hai
+
+
+console.log(a);
+var a  = 10;                // undefined
+
+console.log(a);
+let a = 10                  // reference error
+
+🔵Hoisting means JavaScript allocates memory for variable and functions before execution.
+TDZ: variable present in memory but not usable is callled Tdz
+
+
+🔵Primitive data types like string, number, boolean, null, undefined, bigint, and symbol are immutable.
+Non-primitive types like objects and arrays are mutable by default because their internal data can be modified.
+
+immutable -- data cannot chagne
+mutable   -- data can chagne
+
+🔵What is Type Coercion in JavaScript?
+JavaScript automatically converts one data type into another data type while performing operations or comparisons.
+Types of Type Coercion:
+1. Implicit Coercion (Automatic)  "10" + 5
+2. Explicit Coercion (Manual)     Number("10") + 5
+
+console.log("5" + 1);   // 51
+console.log("5" - 1);   // 4
+console.log(true + 1);  // 2
+console.log(5 == "5");  // true
+console.log(5 === "5"); // false
+
+What is JavaScript?
+How JavaScript Works in Browser
+Is JavaScript single-threaded?
+How async works in JS?                      --------> Using Web APIs, queues, and event loop.
+What is a JavaScript engine?
+Can JS run outside browser?                 --------> Yes, with Node.js.
+Difference between var, let, const?
+Is const completely immutable?
+What is block scope?
+Can we redeclare let?
+
+
+
+
+                     JAVASCRIPT ENGINE
+──────────────────────────────────────────────────
+
+
+├── CALL STACK
+│      │
+│      ├── Global Execution Context (GEC)
+│      │        │
+│      │        ├── Memory Creation Phase
+│      │        │       │
+│      │        │       ├── Variable Environment
+│      │        │       │       │
+│      │        │       │       ├── var
+│      │        │       │       │      x → undefined
+│      │        │       │
+│      │        │       │       ├── let / const
+│      │        │       │       │      TDZ
+│      │        │       │
+│      │        │       │       ├── function declaration
+│      │        │       │       │      greet → function ref
+│      │        │       │
+│      │        │       │       └── arguments (function me)          =====================================> Declaration (Registration) without Initialization
+│      │        │       │                                            =====================================> variable environment me ek reference hold karega(function) or pura function heap mai rhega
+│      │        │       ├── Lexical Environment
+│      │        │       │       │
+│      │        │       │       └── Scope Chain setup
+│      │        │       │
+│      │        │       └── this binding
+│      │        │               │
+│      │        │               └── browser → window
+│      │        │
+│      │        │
+│      │        └── Code Execution Phase
+│      │                │
+│      │                ├── line by line execution
+│      │                │
+│      │                ├── variable assignments
+│      │                │      x = 10
+│      │                │
+│      │                ├── object creation
+│      │                │      heap allocation
+│      │                │
+│      │                ├── function calls
+│      │                │      ↓
+│      │                │      New Execution Context
+│      │                │
+│      │                ├── expressions execute
+│      │                │
+│      │                ├── console.log()
+│      │                │
+│      │                └── async APIs
+│      │                       │
+│      │                       ├── setTimeout()
+│      │                       ├── fetch()
+│      │                       └── DOM Events
+│      │
+│      │
+│      └── Function Execution Context (FEC)
+│               │
+│               ├── Memory Creation Phase
+│               │       │
+│               │       ├── parameters
+│               │       │      name → Rahul
+│               │       │
+│               │       ├── local variables
+│               │       │      msg → undefined
+│               │       │
+│               │       ├── inner functions
+│               │       │
+│               │       └── this binding
+│               │
+│               └── Code Execution Phase
+│                       │
+│                       ├── assignments
+│                       ├── console.log()
+│                       ├── return
+│                       └── function end
+│
+│
+├── HEAP MEMORY
+│      │
+│      ├── Objects
+│      │      H101
+│      │      {
+│      │        name: "Rahul"
+│      │      }
+│      │
+│      ├── Arrays
+│      │      H102 → [1,2,3]
+│      │
+│      ├── Functions
+│      │      H103 → function greet(){}
+│      │
+│      └── Closures / Complex Data
+│
+│
+├── BROWSER WEB APIs
+│      │
+│      ├── setTimeout()
+│      ├── setInterval()
+│      ├── fetch()
+│      ├── DOM
+│      ├── addEventListener()
+│      └── localStorage
+│
+│
+├── TASK QUEUES
+│      │
+│      ├── Microtask Queue (HIGH PRIORITY)
+│      │      │
+│      │      ├── Promise.then()
+│      │      ├── catch()
+│      │      └── queueMicrotask()
+│      │
+│      └── Macrotask Queue
+│             │
+│             ├── setTimeout()
+│             ├── setInterval()
+│             └── DOM Events
+│
+│
+└── EVENT LOOP
+       │
+       ├── Check:
+       │      Call Stack Empty?
+       │
+       ├── YES
+       │      ↓
+       │      Run all Microtasks
+       │
+       └── Then Macrotask
+               ↓
+               Push into Stack
+
+Heap Memory
+   │
+   ├── H101 → Object
+   ├── H102 → Function
+   └── Arrays / Objects
+
+
+Function Call
+   ↓
+New Execution Context
+   ↓
+Call Stack
+
+
+Async Code
+   ↓
+Web APIs
+   ↓
+Microtask / Macrotask Queue
+   ↓
+Event Loop
+   ↓
+Stack
+
+
+==================================================
+
+
+=================================================
+
+console.log("Start");
+
+function greet() {
+    console.log("Hello");
+}
+
+greet();
+
+console.log("End");
+
+
+┌─────────────────────────────────────────────────────────────┐
+│                     JAVASCRIPT SYNC WORK FLOW               │
+├─────────────────────────────────────────────────────────────┤
+│                                                             │
+│ STEP 1: Script Start                                        │
+│                                                             │
+│ Call Stack                                                  │
+│ ┌────────────────────┐                                      │
+│ │ Global EC          │ ← PUSH                               │
+│ └────────────────────┘                                      │
+│                                                             │
+│ Global Execution Context                                    │
+│ ┌────────────────────────────────────────────────────────┐  │
+│ │                                                           │
+│ │ Variable Environment                                      │
+│ │                                                           │
+│ │ greet → H101                                              │
+│ │                                                           │
+│ │ this → window                                             │
+│ └────────────────────────────────────────────────────────┘  │
+│                                                             │
+│ Heap Memory                                                 │
+│ ┌────────────────────────────┐                              │
+│ │ H101                       │                              │
+│ │ function greet(){...}     │                               │
+│ └────────────────────────────┘                              │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│ STEP 2: Code Execution Phase                                │
+│                                                             │
+│ Line: console.log("Start")                                  │
+│                                                             │
+│ Stack:                                                      │
+│ ┌────────────────────┐                                      │
+│ │ console.log()      │ ← PUSH                               │
+│ ├────────────────────┤                                      │
+│ │ Global EC          │                                      │
+│ └────────────────────┘                                      │
+│                                                             │
+│ Output: Start                                               │
+│                                                             │
+│ console.log() POP                                           │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│ STEP 3: Function declaration                                │
+│                                                             │
+│ function greet(){}                                          │
+│                                                             │
+│ Nothing happens                                             │
+│ (already memory me registered)                              │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│ STEP 4: greet() call                                        │
+│                                                             │
+│ New Function Execution Context created                      │
+│                                                             │
+│ Stack:                                                      │
+│ ┌────────────────────┐                                      │
+│ │ greet EC           │ ← PUSH                               │
+│ ├────────────────────┤                                      │
+│ │ Global EC          │                                      │
+│ └────────────────────┘                                      │
+│                                                             │
+│ greet() Memory Phase                                        │
+│ ┌────────────────────────┐                                  │
+│ │ Variable Environment  │                                   │
+│ │ (nothing local here)  │                                   │
+│ └────────────────────────┘                                  │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│ STEP 5: greet() execution                                   │
+│                                                             │
+│ Line: console.log("Hello")                                  │
+│                                                             │
+│ Stack:                                                      │
+│ ┌────────────────────┐                                      │
+│ │ console.log()      │ ← PUSH                               │
+│ ├────────────────────┤                                      │
+│ │ greet EC           │                                      │
+│ ├────────────────────┤                                      │
+│ │ Global EC          │                                      │
+│ └────────────────────┘                                      │
+│                                                             │
+│ Output: Hello                                               │
+│                                                             │
+│ console.log() POP                                           │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│ STEP 6: greet() finished                                    │
+│                                                             │
+│ greet EC POP                                                │
+│                                                             │
+│ Stack:                                                      │
+│ ┌────────────────────┐                                      │
+│ │ Global EC          │                                      │
+│ └────────────────────┘                                      │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│ STEP 7: console.log("End")                                  │
+│                                                             │
+│ Stack:                                                      │
+│ ┌────────────────────┐                                      │
+│ │ console.log()      │ ← PUSH                               │
+│ ├────────────────────┤                                      │
+│ │ Global EC          │                                      │
+│ └────────────────────┘                                      │
+│                                                             │
+│ Output: End                                                 │
+│                                                             │
+│ console.log() POP                                           │
+│                                                             │
+├─────────────────────────────────────────────────────────────┤
+│ STEP 8: Program End                                         │
+│                                                             │
+│ Global EC POP                                               │
+│                                                             │
+│ Call Stack = EMPTY                                          │
+│                                                             │
+│ FINAL OUTPUT:                                               │
+│ Start                                                       │
+│ Hello                                                       │
+│ End                                                         │
+└─────────────────────────────────────────────────────────────┘
+
+
+==============================================================
+                JAVASCRIPT ASYNC COMPLETE FLOW
+==============================================================
+
+CODE:
+
+console.log("Start");
+
+setTimeout(() => {
+   console.log("Timer Done");
+}, 2000);
+
+console.log("End");
+
+
+==============================================================
+STEP 1: SCRIPT START
+==============================================================
+
+Call Stack:
+
+Global EC                     ← PUSH
+
+(Global Execution Context created)
+
+
+Memory Creation Phase:
+
+Variable Environment:
+
+callback function → H101
+
+
+Heap Memory:
+
+H101:
+() => {
+   console.log("Timer Done")
+}
+
+
+==============================================================
+STEP 2: CODE EXECUTION START
+==============================================================
+
+Line:
+
+console.log("Start")
+
+
+Call Stack:
+
+console.log()                ← PUSH
+Global EC
+
+
+Output:
+
+Start
+
+
+console.log()                ← POP
+
+
+Call Stack:
+
+Global EC
+
+
+==============================================================
+STEP 3: setTimeout() FOUND
+==============================================================
+
+Line:
+
+setTimeout(callback, 2000)
+
+
+Call Stack:
+
+setTimeout()                 ← PUSH
+Global EC
+
+
+JS says:
+
+"This is async work"
+
+
+Browser Web API:
+
+Timer running...
+2000ms
+
+
+setTimeout()                 ← POP
+
+
+Call Stack:
+
+Global EC
+
+
+==============================================================
+STEP 4: NEXT LINE RUNS IMMEDIATELY
+==============================================================
+
+Line:
+
+console.log("End")
+
+
+Call Stack:
+
+console.log()                ← PUSH
+Global EC
+
+
+Output:
+
+End
+
+
+console.log()                ← POP
+
+
+Call Stack:
+
+Global EC
+
+
+==============================================================
+STEP 5: GLOBAL CODE FINISHED
+==============================================================
+
+Global EC                    ← POP
+
+
+Call Stack:
+
+EMPTY
+
+
+==============================================================
+STEP 6: TIMER COMPLETES (after 2 sec)
+==============================================================
+
+Browser moves callback to:
+
+MACROTASK QUEUE
+
+
+Macrotask Queue:
+
+callback()
+
+
+==============================================================
+STEP 7: EVENT LOOP CHECKS
+==============================================================
+
+Question:
+
+Call Stack Empty?
+
+Answer:
+
+YES
+
+
+Move callback:
+
+Queue  →  Stack
+
+
+Call Stack:
+
+callback EC                ← PUSH
+
+
+==============================================================
+STEP 8: CALLBACK EXECUTES
+==============================================================
+
+Line:
+
+console.log("Timer Done")
+
+
+Call Stack:
+
+console.log()              ← PUSH
+callback EC
+
+
+Output:
+
+Timer Done
+
+
+console.log()              ← POP
+
+callback EC                ← POP
+
+
+Call Stack:
+
+EMPTY
+
+
+==============================================================
+FINAL OUTPUT
+==============================================================
+
+Start
+End
+Timer Done
+
+
+==============================================================
+MASTER FLOW TO REMEMBER
+==============================================================
+
+Async Code
+↓
+Browser Web API
+↓
+Macrotask / Microtask Queue
+↓
+Event Loop checks stack empty?
+↓
+Move to Stack
+↓
+Execute
+==============================================================

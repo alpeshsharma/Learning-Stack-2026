@@ -1,0 +1,154 @@
+=============================================================================================================
+
+JavaScript, how js works complete end to end (v8, callstack, LIFO, FIFO, callback queue, event loop)
+scope - Global, fucntion, Block, lexical
+Var vs Let vs Const
+Primitive data types 
+Coercion - Implicit, Explicit
+
+this keyword
+function, arrow function
+rest Operator, spread Operator, shallow copy, deep copy
+closure
+bind, call, apply
+callback, callback queue
+promise, async await
+Higher-Order Function
+map() vs forEach(), filter() vs find(), reduce()
+debounce, Throttling
+memorization
+
+
+
+
+
+
+
+Promise methods, Promise.all(), Promise.allSettled(), Promise.race(), Promise.any()
+JWT
+Project explain
+
+angular Signals
+
+
+
+Reason of changing current job
+# I have been working in my current company for the last 3 years and learned a lot there. 
+# Now I feel it’s the right time to take new challenges, improve my skills, and grow in my career.
+# That’s why I’m looking for a new opportunity
+
+Yes, after Angular 17 some important changes were introduced.
+#First, Angular introduced a new control flow syntax like @if, @for, and @switch. Earlier, we used *ngIf and *ngFor, 
+but now Angular provides this new syntax which makes code cleaner and easier to read.
+
+#Second, Angular promoted Standalone Components more. Earlier, we mostly used NgModule,
+but now standalone components are preferred, and in many cases NgModule is not needed. This makes project structure simpler.
+
+#Third, Angular introduced Signals for state management also, 
+I have basic knowledge of these features and I am learning more while working on Angular projects.
+
+1. Self intro
+2. What is the reason for changing your current job?
+4. Which version of Angular are you currently working on?
+5. After Angular 17, many new features were introduced. Can you explain them?
+6. Can you explain Signals in Angular?
+7. If you have two components, AComponent and BComponent, how would you use BComponent inside AComponent in Angular?
+9. What is your understanding of the DOM? Explain it with a real-time example, not theoretically.
+10. If your application supports login from multiple devices like mobile, tablet, desktop, and laptop, how would you identify which device the user is currently logged in from?
+11. What is the purpose of using ngOnInit() in Angular components?
+12. What can Reactive Forms do in a real-time application?
+13. How would you implement a dynamic form where input fields are shown or hidden based on the selected option, while also ensuring that newly added fields from the backend work automatically without changing the UI code?
+14. Why do we use services in Angular apart from API calls?
+15. How can you share data between Angular components?
+16. If you have multiple applications and want to share data between them, how would you design and implement the communication mechanism?
+17. If an admin updates profile data and the same changes need to be reflected in multiple users’ components simultaneously, how would you implement this in Angular?
+18. If an admin has full dashboard access, but different users have different levels of access to specific features, how would you implement role-based access control in Angular?
+19. Why do we need to install Node.js and npm before working with Angular?
+20. How does Change Detection work in Angular applications?
+21. Why do we use Observables in Angular applications?
+Observable gives data → subscribe receives data
+
+>> Observable
+it is a stream that emits data over time when an async operation (like API call) completes.
+
+>> What is subscribe()?
+Subscribe is a method used to execute an Observable and receive the emitted data when the asynchronous operation
+(like an API call) completes.
+Subscribe is used to get data from an Observable when the API response arrives.
+
+>> Why do we need to subscribe?
+In RxJS, Observables are lazy. So without subscribe(), the Observable will not execute,
+and no API call or data emission will happen.
+
+>> What are the handlers inside subscribe()?
+subscribe() can take three handlers:
+
+next → for data
+error → for error handling
+complete → when stream finishes
+
+
+22. Why do we use Dependency Injection in Angular apart from injecting services?
+23. What is the difference between Subject, BehaviorSubject, and ReplaySubject in RxJS?
+24. Can you explain Angular Lifecycle Hooks?
+25. Can you explain Angular Guards?
+Angular Guards are used to secure protect and control routes/pages in an Angular application.
+They check conditions before opening, leaving, or loading a page.
+
+For example:
+If a user is not logged in, guards can stop access to the dashboard page.
+
+1. CanActivate
+CanActivate guard is used to check whether a user can access/enter a route or not.
+
+Example:
+If user is not logged in, dashboard page will not open.
+
+2. CanDeactivate
+CanDeactivate guard is used to check whether a user can leave a page or not.
+
+Example:
+If user is filling a form and clicks another page,
+a popup message appears
+
+3. CanActivateChild
+CanActivateChild guard is used to protect all child routes of a parent route.
+
+Instead of applying guard on every page,
+we apply one guard on parent route.
+
+4. CanMatch
+CanMatch guard is used to decide whether a route should load/match or not.
+
+Only admin user can open admin panel.
+
+If normal user tries:
+route will not load.
+
+CanActivate      → Enter page?
+CanDeactivate    → Leave page?
+CanActivateChild → Protect child pages?
+CanMatch         → Load/match route?
+
+26. If an application has multiple components and different users with different permissions, how would you dynamically show or hide components based on the logged-in user?
+27. How can you restrict routes based on user roles in Angular?
+28. Can you write code for an HTTP interceptor to handle common error responses in Angular?
+==> HTTP Interceptor is a common place where Angular catches every API request/response before it reaches your component.
+==> HTTP Interceptor is used to intercept all HTTP requests and responses globally for common tasks like authentication, error handling, and logging.
+Flow:
+Component → Interceptor → API
+API → Interceptor → Component
+
+Example Uses:
+• Add JWT/Auth Token
+• Handle common errors (401, 404, 500)
+• Logging
+• Show loading spinner
+
+
+29. Can you explain Server-Side Rendering (SSR) and Client-Side Rendering (CSR)?
+Server-Side Rendering (SSR) is a rendering method where the server generates the complete HTML page on the server side and sends the ready page to the browser.
+Client-Side Rendering (CSR) is a rendering method where the browser receives basic HTML and JavaScript, then fetches data and builds the page on the client side.
+
+The main difference between SSR and CSR is where the page is rendered.
+In SSR, rendering happens on the server, while in CSR, rendering happens in the browser (client)

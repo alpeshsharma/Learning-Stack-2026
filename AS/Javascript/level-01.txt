@@ -1,0 +1,219 @@
+# Technical Round 1 – MEAN Stack Developer – PwC India (3 Years Experience)
+
+## Angular Questions
+
+1. What is the difference between AngularJS and Angular?
+2. Explain Angular lifecycle hooks.
+3. What is dependency injection in Angular?
+4. Difference between constructor and ngOnInit?
+5. What are services in Angular?
+6. What is lazy loading?
+7. Difference between template-driven and reactive forms?
+8. What is RxJS?
+9. Explain Observables vs Promises.
+10. What is change detection?
+11. Explain route guards.
+12. What is interceptor in Angular?
+13. How do you optimize Angular performance?
+14. What are standalone components?
+15. Difference between Subject, BehaviorSubject, ReplaySubject?
+16. How do you share data between components?
+17. Explain state management.
+18. How does async pipe work?
+19. How do you handle memory leaks?
+20. Explain your Angular project architecture.
+
+---
+
+## Node.js Questions
+
+1. What is event loop in Node.js?
+2. Difference between synchronous and asynchronous programming?
+3. What is middleware in Express.js?
+4. Explain JWT authentication.
+5. What is callback hell?
+6. Difference between process.nextTick() and setImmediate()
+7. How do you handle errors in Node.js?
+8. What is clustering?
+9. Explain streams in Node.js.
+10. Explain REST API best practices.
+11. What is async/await?
+12. How do you secure Node APIs?
+13. What is rate limiting?
+14. How do you structure a Node.js project?
+15. Explain file upload implementation.
+16. Difference between PUT and PATCH.
+17. What is CORS?
+18. Explain authentication vs authorization.
+19. How do you optimize slow APIs?
+20. Explain a production issue you solved.
+
+---
+
+## MongoDB Questions
+
+1. Difference between SQL and MongoDB?
+2. Explain indexing in MongoDB.
+3. What is aggregation pipeline?
+4. Difference between embedding and referencing?
+5. How do you optimize slow MongoDB queries?
+6. Explain sharding.
+7. What is replication?
+8. Difference between find() and aggregate()
+9. How do you design scalable schema?
+10. Write query to find duplicate records.
+11. Explain pagination in MongoDB.
+12. What is lookup in MongoDB?
+13. Explain compound indexes.
+14. How do you handle large datasets?
+15. Explain MongoDB transactions.
+
+---
+
+## JavaScript Questions
+
+1. Difference between var, let, and const
+2. What is closure?
+3. Explain hoisting.
+4. Difference between == and ===
+5. What is event bubbling?
+6. Explain promises and async/await.
+7. What is debounce and throttle?
+8. Explain prototype inheritance.
+9. What is currying?
+10. Difference between deep copy and shallow copy.
+11. What are higher-order functions?
+12. Explain call(), apply(), and bind().
+13. What is lexical scope?
+14. Explain this keyword.
+15. What is event delegation?
+16. Explain memory leaks in JavaScript.
+17. Difference between null and undefined.
+18. What is optional chaining?
+19. Explain map(), filter(), reduce().
+20. Explain arrow functions.
+
+---
+
+## API & Authentication Questions
+
+1. How does JWT work?
+2. Difference between session and token authentication?
+3. How do you refresh expired tokens?
+4. What is OAuth?
+5. How do you secure sensitive API data?
+6. Explain role-based access control.
+7. What is bcrypt?
+8. Explain API versioning.
+9. How do you validate request payload?
+10. How do you handle API errors globally?
+
+---
+
+## Scenario-Based Questions
+
+1. Explain your current project architecture.
+2. What was your biggest challenge in the project?
+3. How did you improve application performance?
+4. Describe a production issue you solved.
+5. Have you handled deployment?
+6. How do you debug production issues?
+7. What happens when API response is slow?
+8. How do you manage reusable components?
+9. How do you handle large datasets in Angular?
+10. Explain one feature end-to-end.
+11. How do you handle team conflicts?
+12. Explain Agile/Scrum experience.
+13. How do you estimate tasks?
+14. What code review process do you follow?
+15. How do you ensure code quality?
+
+---
+
+## Coding Questions
+
+### JavaScript Coding
+
+1. Reverse a string
+2. Palindrome check
+3. Find duplicate elements
+4. Flatten nested array
+5. Implement debounce function
+6. Implement throttle function
+7. Find missing number
+8. Sort array without sort()
+9. Remove duplicates from array
+10. Find frequency of characters
+
+### Node.js Coding
+
+1. Create REST API
+2. CRUD operations
+3. JWT login API
+4. File upload API
+5. Pagination API
+6. Authentication middleware
+7. Role-based access API
+8. Error handling middleware
+
+### MongoDB Coding
+
+1. Aggregation query
+2. Pagination query
+3. Lookup query
+4. Group by query
+5. Find duplicate records query
+
+---
+
+## HR + Technical Questions
+
+1. Why do you want to join PwC?
+2. Why are you changing company?
+3. What is your notice period?
+4. Expected salary?
+5. Are you comfortable with hybrid work?
+6. What are your strengths?
+7. What are your weaknesses?
+8. Where do you see yourself in 5 years?
+9. Why should we hire you?
+10. Explain your recent project.
+
+---
+
+## Frequently Asked in PwC Interviews
+
+1. Explain event loop with example.
+2. Difference between Observable and Promise.
+3. Write JWT authentication flow.
+4. Explain Angular lifecycle practically.
+5. MongoDB aggregation real use case.
+6. Optimize slow API response.
+7. Explain your project end-to-end.
+8. Difference between authentication and authorization.
+9. How do you secure Node APIs?
+10. Write pagination API.
+11. Explain lazy loading.
+12. Explain microservices basics.
+13. Explain caching strategies.
+14. Explain API security.
+15. Explain production deployment process.
+
+---
+
+## Important Preparation Topics
+
+* Angular lifecycle hooks
+* RxJS
+* JWT authentication
+* MongoDB aggregation
+* Node.js event loop
+* API optimization
+* Async programming
+* Error handling
+* Performance tuning
+* Project architecture
+* REST APIs
+* Security best practices
+* Debugging production issues
+* System design basics

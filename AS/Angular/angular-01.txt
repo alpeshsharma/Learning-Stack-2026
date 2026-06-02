@@ -1,0 +1,89 @@
+🔵Angular - angular is a frontend framework use to build (SPA) single page application
+used for:
+1> Dynamic websites
+2> develop Scalable application and robust application.
+
+➡️(SPA) single page application - means its change the content dynamically we don't need to reload the page again and again
+In SPA only one HTML page load, then change the content by using routing, page is not reload 
+Benefits of SPA
+Fast navigation
+Better user experience
+App-like feel
+
+➡️Angular is framework
+Framework - framework is set of tools, rules and structure used to build application.
+Library gives us only some feautres, framework provide complete package
+Routing built-in
+Forms built-in
+HTTP built-in
+Dependency Injection built-in
+Testing tools built-in
+
+latest angular version - 21(launched in nov 2025)
+launch angular - september 2016
+angular js - with javascript
+angular - launch typescript
+typescript - superset of javascript
+package.json → dependencies & scripts
+angular.json → project config
+src/main.ts → entry point
+app.module.ts → root module
+app.component.ts/html/css → main component
+
+🔵Angular Architecture:- combination of multiple building blocks
+➡️component - basic building block of angular UI
+➡️module - group of components and service
+➡️service - used for business logic and api calls
+➡️template - used for where write html code.
+➡️Directive - control dom Behavior(show hide)
+➡️Routing - navigation between pages
+
+
+            ****************************************************************************************************
+
+1. What is Angular?
+2. Angular framework kyun kehte hain?
+because it provide complete solution:- routing, forms, https, dependency injection, testing support, project structure.
+3. Angular kis company ne banaya? 
+Google
+4. Angular ka use kahan hota hai?
+build for large application
+admin portals
+enterprise portals
+goverment platforms 
+spa application
+5. What is SPA ?
+6. Angular vs React difference?
+| Angular                | React              |
+| ---------------------- | ------------------ |
+| Full Framework         | Library            |
+| TypeScript based       | JS/TS              |
+| Built-in routing/forms | External packages  |
+7. Angular architecture
+8. What is component
+9. What is service
+10. what is Directive & Routing
+11. what is Angular CLI
+Angular CLI - (command line interface) - it's a command line tool used to create and manage angular project quicklly.
+ng new my-app
+ng serve
+ng generate component home
+12.what is ng new
+creating angular project
+13. what is ng serve ?
+ng serve used for basically run Local server development, and run application in browser
+14: what is localhost:4200
+it is local development server
+localhost = current machine
+4200 = default Angular port
+15. what is src folder ? 
+it's a main source of application
+src/app folder(component/service)/main ts or style files.
+16. What inside in assets folder ?
+store image,json ---> store locally
+
+
+
+
+
+

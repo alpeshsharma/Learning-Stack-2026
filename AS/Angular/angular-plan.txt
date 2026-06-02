@@ -1,0 +1,256 @@
+🔵Step 1: Angular Fundamentals ()
+What is Angular?
+Framework vs Library
+Angular vs React vs Vue
+SPA concept
+Why Angular used in companies
+Angular Architecture
+Components
+Modules
+Services
+Templates
+Directives
+Routing
+
+Setup Environment
+Install Node.js
+Install Angular CLI
+Create project:
+
+npm install -g @angular/cli
+ng new my-app
+ng serve
+
+
+Folder Structure
+src/
+app/
+assets/
+environments/
+angular.json
+
+🔵Step 2: Components (Core of Angular)
+Component Basics
+What is component
+Create component
+
+Component Parts
+HTML template
+CSS/SCSS
+TypeScript file
+Selector
+
+Component Communication
+Parent to child → @Input()
+Child to parent → @Output() + EventEmitter
+Sibling communication
+Lifecycle Hooks (Very Important)
+ngOnInit
+ngOnChanges
+ngDoCheck
+ngAfterViewInit
+ngAfterContentInit
+ngOnDestroy
+
+🔵Step 3: Templates & Data Binding
+Interpolation
+Property Binding
+Event Binding
+Two-Way Binding
+Template Reference Variables
+
+Pipes
+Built-in pipes
+date
+currency
+uppercase
+json
+custom pipes
+
+🔵Step 4: Directives
+Structural Directives
+*ngIf
+*ngFor
+*ngSwitch
+Attribute Directives
+ngClass
+ngStyle
+Custom Directives
+HostListener
+HostBinding
+Renderer2
+
+🔵Step 5: Services & Dependency Injection (Very Important)
+Services
+Why services used
+Business logic separation
+
+Dependency Injection
+Providers
+Singleton services
+Inject decorator
+Hierarchical DI
+Injectable Scopes
+root
+module
+component
+
+🔵Step 6: Routing (Must Learn)
+Angular Router Basics
+Setup routes
+RouterOutlet
+routerLink
+Route Parameters
+/users/:id
+
+Query Params
+Nested Routes
+Lazy Loading Modules
+Route Guards
+CanActivate
+CanDeactivate
+Resolve
+CanLoad
+Wildcard Routes **
+
+🔵Step 7: Forms (Highly Important)
+Template Driven Forms
+ngModel
+validation
+Reactive Forms (Industry Standard)
+FormControl
+FormGroup
+FormArray
+Validators
+Custom validators
+Validation Types
+required
+minlength
+pattern
+async validators
+
+🔵Step 8: HTTP & API Integration
+HttpClient Module
+GET POST PUT DELETE
+Headers
+Params
+Interceptors (Very Important)
+Add token
+Error handling
+Logging
+Error Handling
+Environment based API URLs
+
+🔵Step 9: RxJS (Critical for Angular)
+Basics
+Observable
+Observer
+Subscription
+Operators
+map
+filter
+tap
+switchMap
+mergeMap
+concatMap
+debounceTime
+distinctUntilChanged
+catchError
+retry
+Subjects
+Subject
+BehaviorSubject
+ReplaySubject
+Unsubscribe Techniques
+takeUntil
+async pipe
+
+🔵Step 10: State Management
+Local State
+Shared State via Services
+Advanced State
+NgRx
+Actions
+Reducers
+Effects
+Selectors
+Store Devtools
+Alternatives
+Akita
+Signals Store
+
+🔵Step 11: Angular Advanced Concepts
+Change Detection
+Default strategy
+OnPush strategy
+Zones
+Signals (Modern Angular Very Important)
+signal()
+computed()
+effect()
+
+Dynamic Components
+Content Projection
+<ng-content>
+
+ViewChild / ContentChild
+Standalone Components (Modern Angular Must Learn)
+Custom Schematics
+
+🔵Step 12: Angular Performance Optimization
+Lazy Loading
+Preloading Strategy
+TrackBy in ngFor
+OnPush Change Detection
+Pure Pipes
+Virtual Scrolling
+Debouncing Search
+Bundle Optimization
+Tree Shaking
+
+🔵Step 13: Security in Angular
+XSS Protection
+DomSanitizer
+Route Guards
+JWT Authentication
+Role Based Access
+CSRF Basics
+
+🔵Step 14: Testing
+Unit Testing
+Jasmine
+Karma
+Component Testing
+Service Testing
+Http Testing
+E2E Testing
+Cypress
+Playwright
+
+🔵Step 15: Angular Material / UI Libraries
+Angular Material
+Buttons
+Dialog
+Table
+Form fields
+Snackbar
+Sidenav
+Other Libraries
+PrimeNG
+NG-Zorro
+Bootstrap
+
+🔵Step 16: Deployment & Production
+Build Project
+ng build --configuration production
+Deploy To
+Netlify
+Vercel
+Firebase
+AWS
+Azure
+Environment Config
+CI/CD Basics
+
+
+

@@ -1,0 +1,478 @@
+
+╔══════════════════════════════════════════════════════════════╗
+║          JAVASCRIPT ASYNC STORY                              ║
+╚══════════════════════════════════════════════════════════════╝
+
+
+🟢 STEP 1 : SYNCHRONOUS JAVASCRIPT
+
+JavaScript by default synchronous hoti hai.
+
+Matlab:
+- ek time pe ek kaam
+- line by line execution
+- single call stack
+
+Interview Definition:
+"Synchronous programming means code executes sequentially,
+one line at a time."
+
+
+Example:
+
+console.log("Line 1");
+console.log("Line 2");
+console.log("Line 3");
+
+
+Output:
+
+Line 1
+Line 2
+Line 3
+
+
+------------------------------------------------------------
+
+
+🟢 REAL LIFE EXAMPLE
+
+Imagine:
+Tum Amazon pe order kar rahe ho.
+
+Steps:
+1. Product add karo
+2. Payment karo
+3. Invoice email bhejo
+
+Ab logically:
+Pehle payment complete honi chahiye
+phir invoice jana chahiye.
+
+Lekin problem yaha start hoti hai 👇
+
+
+------------------------------------------------------------
+
+
+🟢 NORMAL SYNCHRONOUS CODE
+function addProducts() {
+    console.log("Products Added");
+}
+
+function doPayment() {
+    setTimeout(() => {
+        console.log("Payment Done");
+    }, 2000);
+
+}
+
+function emailInvoice() {
+    console.log("Invoice Sent");
+}
+
+function main() {
+    addProducts();
+    doPayment();
+    emailInvoice();
+}
+
+main();
+
+Expected Output:
+Products Added
+Payment Done
+Invoice Sent
+
+
+Actual Output:
+Products Added
+Invoice Sent
+Payment Done
+
+------------------------------------------------------------
+
+🟢 PROBLEM KYA HUI?
+
+Payment ko 2 second lage.
+JavaScript wait nahi kari.
+Wo next line execute kar deti hai.
+
+------------------------------------------------------------
+
+
+🟢 SOLUTION → CALLBACK
+
+Interview Definition:
+
+"A callback is a function passed as an argument
+to another function to be executed later."
+
+
+Simple Language:
+
+"Kaam complete hone ke baad mujhe bula lena."
+
+
+Real Life Example:
+Tum restaurant me order dete ho.
+Waiter bolta hai:
+"Food ready ho jaye toh bula lunga."
+Ye "bula lunga" hi callback hai 
+
+------------------------------------------------------------
+
+
+🟢 CALLBACK VERSION
+
+function addProducts(callback) {
+    console.log("Products Added");
+    callback();
+}
+
+
+function doPayment(callback) {
+    setTimeout(() => {
+        console.log("Payment Done");
+        callback();
+    }, 2000);
+}
+
+
+function emailInvoice() {
+    console.log("Invoice Sent");
+}
+
+
+function main() {
+    addProducts(() => {
+        doPayment(() => {
+            emailInvoice();
+        });
+    });
+}
+main();
+
+
+Correct Output:
+Products Added
+Payment Done
+Invoice Sent
+
+
+------------------------------------------------------------
+
+
+🟢 CALLBACK FLOW SAMJHO
+
+STEP 1:
+Products add hue
+STEP 2:
+Payment start hua
+STEP 3:
+Payment complete hone ke baad callback call hua
+STEP 4:
+Invoice send hui
+
+Matlab:
+"Payment hone tak wait karo."
+
+------------------------------------------------------------
+
+
+🟢 CALLBACK HELL
+
+Ab maan lo real app me:
+1. Login
+2. Fetch Profile
+3. Fetch Orders
+4. Make Payment
+5. Send Email
+6. Send SMS
+
+
+Code aisa banne lagta hai 👇
+
+loginUser(function(user) {
+    getProfile(user, function(profile) {
+        getOrders(profile, function(order) {
+            makePayment(order, function(payment) {
+                sendEmail(payment, function() {
+                    sendSMS();
+                });
+            });
+        });
+    });
+});
+
+
+Ye jo pyramid ban gaya
+isko bolte hain:
+
+🚨 CALLBACK HELL
+
+
+------------------------------------------------------------
+
+
+🟢 CALLBACK HELL DEFINITION (Interview)
+Callback Hell is a situation where multiple nested
+callbacks make code unreadable and difficult to maintain.
+
+
+Problems:
+- difficult to read
+- difficult to debug
+- difficult to maintain
+- ugly nested structure
+
+
+------------------------------------------------------------
+
+
+🟢 SOLUTION → PROMISES
+JavaScript ne bola:
+"Bhai callbacks bahut messy ho rahe hain."
+
+Fir Promise introduce hua.
+Interview Definition:
+
+"A Promise is an object representing the eventual
+completion or failure of an asynchronous operation."
+
+It has three states:
+
+Pending → initial state, neither fulfilled nor rejected
+Fulfilled (Resolved) → operation completed successfully
+Rejected → operation failed
+
+Simple Meaning:
+
+"Future me result dene ka promise."
+
+------------------------------------------------------------
+
+
+🟢 REAL LIFE PROMISE EXAMPLE
+Food Delivery App:
+
+You order food.
+
+App promise karti hai:
+
+✅ Food delivered → resolve
+❌ Order cancelled → reject
+
+
+------------------------------------------------------------
+
+
+🟢 PROMISE CODE
+Example 1:
+let myPromise = new Promise((resolve, reject) => {
+    let success = true;
+
+    if (success) {
+        resolve("Task completed successfully!");
+    } else {
+        reject("Task failed!");
+    }
+});
+
+console.log(myPromise); // Promise { <pending> }
+
+myPromise
+    .then((result) => {
+        console.log("Fulfilled:", result);
+    })
+    .catch((error) => {
+        console.log("Rejected:", error);
+    });
+
+
+Example 2:
+// Food Delivery Promise Example
+function orderFood() {
+    return new Promise((resolve, reject) => {
+        console.log("Order placed...");
+        setTimeout(() => {
+            let restaurantAccepted = true;
+            if (restaurantAccepted) {
+                resolve("Food Delivered");
+            } else {
+                reject("❌ Order Cancelled");
+            }
+        }, 3000);
+    });
+}
+
+// Consuming Promise
+orderFood().then((message) => {
+        console.log(message);
+    }).catch((error) => {
+        console.log(error);
+    });
+
+
+Example 3:
+function addProducts() {
+    return new Promise((resolve) => {
+        console.log('product added');
+        resolve();
+    });
+}
+
+function doPayment() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            console.log('UPI done');
+            resolve();
+        }, 2000);
+    });
+}
+
+function emailMsg() {
+    return new Promise((resolve) => {
+        console.log('mail send done');
+        resolve();
+    });
+}
+
+function main() {
+    addProducts().then(() => {
+            return doPayment();
+        }).then(() => {
+            return emailMsg();
+        }).then(() => {
+            console.log('all done');
+        }).catch((err) => {
+            console.log('error:', err);
+        });
+}
+
+main();
+
+Cleaner version (short chaining)
+
+function main() {
+    addProducts()
+        .then(doPayment)
+        .then(emailMsg)
+        .then(() => console.log('all done'))
+        .catch(console.log);
+}
+------------------------------------------------------------
+
+
+
+
+------------------------------------------------------------
+
+
+🟢 PROMISE PROBLEM
+Bahut saare .then() ho jaye toh readability fir kharab.
+
+Isliye aaya:
+🚀 ASYNC AWAIT
+------------------------------------------------------------
+
+🟢 ASYNC AWAIT
+
+Interview Definition:
+
+async/await is a modern way to handle asynchronous code in JavaScript.
+It is built on top of Promises and makes async code look like synchronous code.
+
+What is async?
+The async keyword is used before a function.
+It makes the function always return a Promise.
+
+What is await?
+await is used inside an async function.
+It pauses execution until the Promise is resolved or rejected.
+
+Simple Meaning:
+"Async code ko normal code ki tarah likho."
+
+------------------------------------------------------------
+
+
+🟢 ASYNC AWAIT VERSION
+Exaample 1:
+function getData() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Data received");
+        }, 2000);
+    });
+}
+
+async function main() {
+    console.log("Start");
+
+    let result = await getData(); // waits here
+    console.log(result);
+
+    console.log("End");
+}
+
+main();
+
+Example 2:
+function doPayment() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Payment Done");
+        }, 2000);
+    });
+}
+
+async function main() {
+    console.log("Products Added");
+    const result = await doPayment();
+    console.log(result);
+    console.log("Invoice Sent");
+}
+
+main();
+
+Output:
+
+Products Added
+Payment Done
+Invoice Sent
+
+
+------------------------------------------------------------
+
+
+🟢 MAGIC OF AWAIT
+await kya karta hai?
+"Promise complete hone tak function ko pause karta hai."
+
+Matlab:
+Payment hone ka wait karo fir next line execute karo.
+
+------------------------------------------------------------
+
+
+🟢 TRY CATCH
+async function main() {
+    try {
+        const result = await doPayment();
+        console.log(result);
+    } catch(error) {
+        console.log(error);
+    }
+}
+
+------------------------------------------------------------
+
+
+why we use callback
+Synchronous callback vs Asynchronous callback
+Every callback asynchronous hota hai?
+Callback Hell ka reason kya tha?
+Callback Hell avoid kaise karte hain?
+Anonymous callback kya hota hai?
+Named callback kya hota hai?

@@ -1,0 +1,53 @@
+Error Handling:-means dealing with unexpected problems in code so your program doesn't crash suddenly.
+
+Real life example:
+Imagine you go to ATM to withdraw money.
+
+If ATM works → you get money.
+If card blocked → ATM shows error message.
+If network issue → ATM says try later.
+
+This is exactly what Error Handling does in programming.
+
+1. try...catch
+
+try → write risky code
+catch → runs if error happens
+
+try{
+    // code
+}catch(error){
+    // handle error
+}
+
+2. finally
+Runs always whether error comes or not.
+
+Real life example:-
+You open bank locker.
+Use locker
+Close locker always
+
+try {
+   console.log("Using locker");
+}
+catch(error){
+   console.log(error);
+}
+finally{
+   console.log("Locker closed");
+}
+
+3. Throwing Errors
+We manually create errors using throw.
+
+Example:
+
+let age = 16;
+try{
+    if(age < 18){
+        throw new Error('you are not eligible');
+    }
+}catch(error){
+    console.log('something went wrong');
+}

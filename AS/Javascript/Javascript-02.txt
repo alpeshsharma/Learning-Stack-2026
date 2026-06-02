@@ -1,0 +1,205 @@
+JavaScript this Keyword
+
+Definition:
+this keyword current object ko refer karta hai, jo function ko execute/call kar raha hota hai.
+
+Simple Line:
+"this" ka matlab hota hai:
+→ Kis object ne function ko call kiya hai.
+
+
+Most Important Rule:
+this depends on HOW function is called,
+NOT where function is written.
+
+
+Definition:
+The this keyword in JavaScript refers to the current object that is currently executing the function.
+
+Simple Line:
+this represents the object that calls the function.
+
+Important Rule:
+The value of this depends on how a function is called, not where it is defined.
+
+
+========================================================
+1. Global Scope
+========================================================
+
+console.log(this);
+
+
+Browser Output:
+window
+
+
+Explanation:
+Browser me global execution context ke andar this = window hota hai.
+
+
+Example:
+console.log(this === window);     // true
+
+
+
+Interview Line:
+In browser global scope, this refers to the window object.
+
+
+
+========================================================
+2. Normal Function
+========================================================
+
+function show() {
+   console.log(this);
+}
+
+show();
+
+
+Non Strict Mode Output:
+window
+
+
+Strict Mode Example:
+
+"use strict";
+
+function show() {
+   console.log(this);
+}
+
+show();
+
+
+Strict Mode Output:
+undefined
+
+
+Explanation:
+Normal function ka this depends on how function is called.
+
+Normal call me:
+show()
+
+Browser internally:
+window.show()
+
+
+Interview Line:
+Inside a normal function:
+- non strict mode → window
+- strict mode → undefined
+
+
+
+========================================================
+3. Object Method
+========================================================
+
+const user = {
+   name: "Alpesh",
+
+   greet: function () {
+      console.log(this);
+   }
+};
+
+user.greet();
+
+
+Output:
+user object
+
+
+Explanation:
+Dot ke left side wala object becomes this.
+
+
+Example:
+
+const car = {
+   brand: "BMW",
+
+   showBrand: function () {
+      console.log(this.brand);
+   }
+};
+
+car.showBrand();                  // BMW
+
+
+Interview Line:
+Inside an object method, this refers to the object before the dot.
+
+
+
+========================================================
+Arrow Function this
+========================================================
+
+Important Rule:
+Arrow function apna khud ka this nahi banata.
+
+Ye parent scope ka this use karta hai.
+
+
+
+Wrong Example:
+
+const user = {
+   name: "Alpesh",
+
+   greet: () => {
+      console.log(this.name);
+   }
+};
+
+user.greet();
+
+
+Output:
+undefined
+
+
+Explanation:
+Arrow function ka own this nahi hota.
+Ye global this le raha hai.
+
+
+
+Correct Example:
+
+const user = {
+   name: "Alpesh",
+
+   greet: function () {
+
+      const inner = () => {
+         console.log(this.name);
+      };
+
+      inner();
+   }
+};
+
+user.greet();
+
+
+Output:
+Alpesh
+
+
+Explanation:
+Arrow function parent function ka this inherit karta hai.
+
+
+
+Interview Line:
+Arrow functions do not have their own this.
+They inherit this from the parent scope.
+
+
+

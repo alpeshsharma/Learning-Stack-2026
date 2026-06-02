@@ -1,0 +1,257 @@
+🔵Bind, Call, apply
+
+➡️Bind:- bind() is a JavaScript method that creates and returns a new function with a fixed this context.
+Unlike call() and apply(), it does not execute the function immediately.
+
+➡️Call:- call() is a JavaScript method that immediately executes a function 
+with a specified this context.
+Arguments are passed one by one separated by commas.
+
+➡️Apply:- apply() is a JavaScript method that immediately executes a function 
+with a specified this context.
+Arguments are passed in the form of an array.
+
+                                            *******************************************
+
+🔵Bind:- bind() is a JavaScript method that creates and returns a new function with a fixed this context.
+Unlike call() and apply(), it does not execute the function immediately.
+
+➡️Example: 1
+const user = {
+    name:'alpesh'   
+}
+
+function greet(){
+    console.log(this.name);
+}
+
+const printName = greet.bind(user);
+printName();                                            // alpesh
+
+
+
+➡️Example: 2
+const student1 = {
+    name:'ankit'
+}
+
+const student2 = {
+    name:'vishal'
+}
+
+function Performance(){
+    console.log("good marks"+ this.name);
+}
+
+const result1 = Performance.bind(student1);
+result1();                                              // good marks ankit
+
+const result2 = Performance.bind(student2); 
+result2();                                              // good marks vishal
+
+
+
+➡️Example: 3 (Bind with parameters)
+const citizenName = {
+    name:'divyansh'
+}
+
+function checkStaus(city, country){
+    console.log(this.name + "lives in"+ city + "," + country);
+}
+
+const check = checkStaus.bind(citizenName, "jaipur", "india")
+check();                                                // divyansh lives in jaipur,india
+
+➡️Example 4:
+const employee = {
+  name: "Alpesh",
+  company: "Google"
+};
+
+function details(role) {
+  console.log(this.name + " works as " + role + " at " + this.company);
+}
+
+const employeeDetails = details.bind(employee, "Software Engineer");
+employeeDetails();                                          // Alpesh work as Software Engineer at Google.
+
+
+
+                                                    ********************************************
+
+🔵Call:- call() is a JavaScript method that immediately executes a function 
+with a specified this context.
+Arguments are passed one by one separated by commas.
+
+
+➡️Example: 1
+const user = {
+    name:'alpesh'
+}
+
+function greet(){
+    console.log(this.name);
+}
+
+greet.call(user);                                  // alpesh
+
+
+
+➡️Example: 2
+const student1 = {
+    name:'ankit'
+}
+
+const student2 = {
+    name:'vishal'
+}
+
+function Performance(){
+    console.log("good marks " + this.name);
+}
+
+Performance.call(student1);                        // good marks ankit
+Performance.call(student2);                        // good marks vishal
+
+
+
+➡️Example: 3 (Call with parameters)
+const citizenName = {
+    name:'divyansh'
+}
+
+function checkStatus(city, country){
+    console.log(this.name + " lives in " + city + "," + country);
+}
+
+checkStatus.call(citizenName, "jaipur", "india");
+// divyansh lives in jaipur,india
+
+
+
+➡️Example: 4
+const employee = {
+  name: "Alpesh",
+  company: "Google"
+};
+
+function details(role) {
+  console.log(this.name + " works as " + role + " at " + this.company);
+}
+
+details.call(employee, "Software Engineer");
+// Alpesh works as Software Engineer at Google.
+
+
+
+➡️Example: 5 (Function Borrowing)
+const person1 = {
+    name:'rohit'
+}
+
+const person2 = {
+    name:'mohit'
+}
+
+function intro(){
+    console.log("My name is " + this.name);
+}
+
+intro.call(person1);                               // My name is rohit
+intro.call(person2);                               // My name is mohit
+
+
+
+                                                **********************************************
+
+                                                
+🔵Apply:- apply() is a JavaScript method that immediately executes a function 
+with a specified this context.
+Arguments are passed in the form of an array.
+
+Unlike bind(), apply() executes the function immediately.
+
+
+➡️Example: 1
+const user = {
+    name:'alpesh'
+}
+
+function greet(){
+    console.log(this.name);
+}
+
+greet.apply(user);                                  // alpesh
+
+
+
+➡️Example: 2
+const student1 = {
+    name:'ankit'
+}
+
+const student2 = {
+    name:'vishal'
+}
+
+function Performance(){
+    console.log("good marks " + this.name);
+}
+
+Performance.apply(student1);                        // good marks ankit
+Performance.apply(student2);                        // good marks vishal
+
+
+
+➡️Example: 3 (Apply with parameters)
+const citizenName = {
+    name:'divyansh'
+}
+
+function checkStatus(city, country){
+    console.log(this.name + " lives in " + city + "," + country);
+}
+
+checkStatus.apply(citizenName, ["jaipur", "india"]);
+// divyansh lives in jaipur,india
+
+
+
+➡️Example: 4    
+const employee = {
+  name: "Alpesh",
+  company: "Google"
+};
+
+function details(role) {
+  console.log(this.name + " works as " + role + " at " + this.company);
+}
+
+details.apply(employee, ["Software Engineer"]);
+// Alpesh works as Software Engineer at Google.
+
+
+
+➡️Example: 5 (Function Borrowing)
+const person1 = {
+    name:'rohit'
+}
+
+const person2 = {
+    name:'mohit'
+}
+
+function intro(){
+    console.log("My name is " + this.name);
+}
+
+intro.apply(person1);                               // My name is rohit
+intro.apply(person2);                               // My name is mohit
+
+
+
+➡️Example: 6 (Most Common Use Case)
+const numbers = [10, 50, 20, 80];
+const maxNumber = Math.max.apply(null, numbers);
+console.log(maxNumber);                             // 80

@@ -1,0 +1,1856 @@
+
+=========================
+CALLBACK INTERVIEW Q&A
+=========================
+
+1. What is Callback?
+
+Q: What is callback in JavaScript?
+
+A:
+A callback is a function passed as an argument
+to another function and executed later.
+
+Simple:
+Ek function ko dusre function me pass karna
+taaki future me execute ho.
+
+Example:
+function greet(callback) {
+    console.log("Hello");
+    callback();
+}
+
+function bye() {
+    console.log("Bye");
+}
+
+greet(bye);
+
+Output:
+Hello
+Bye
+
+
+-------------------------------------------------------
+
+2. Why do we use callback?
+
+Q: Why we use callback?
+
+A:
+Callbacks are used to handle asynchronous operations.
+
+JavaScript is single-threaded and non-blocking.
+
+Tasks like:
+- API calls
+- Database calls
+- Timers
+- File reading
+
+time lete hain.
+
+Callback helps execute code after task completion.
+
+Example:
+setTimeout(() => {
+    console.log("Task completed");
+}, 2000);
+
+
+--------------------------------------------------------
+
+3. Synchronous callback vs Asynchronous callback
+
+Q: Difference between synchronous and asynchronous callback?
+
+A:
+
+1. Synchronous Callback
+Immediately execute hota hai.
+
+Example:
+function test(callback) {
+    callback();
+}
+
+test(() => {
+    console.log("Sync");
+});
+
+Output:
+Sync
+
+
+2. Asynchronous Callback
+Future me execute hota hai.
+An asynchronous callback would happen later, after some async operation finishes, for example:
+
+Example:
+setTimeout(() => {  
+    console.log("Async");
+}, 1000);
+
+Output after 1 sec:
+Async
+
+
+-------------------------
+
+4. Every callback asynchronous hota hai?
+
+Q: Is every callback asynchronous?
+
+A:
+NO ❌
+
+Callback sirf function hota hai.
+
+It can be:
+
+1. Synchronous
+
+[1,2,3].map((x) => x * 2);
+
+map callback immediately run hota hai.
+
+
+2. Asynchronous
+
+setTimeout(() => {
+    console.log("Hello");
+}, 1000);
+
+
+-------------------------
+
+5. What is Callback Hell?
+
+Q: What is callback hell?
+
+A:
+Callback hell is a situation where multiple nested
+callbacks make code difficult to read, debug,
+and maintain.
+
+Example:
+
+login(() => {
+    getProfile(() => {
+        getPosts(() => {
+            logout(() => {
+                console.log("Done");
+            });
+        });
+    });
+});
+
+Also called:
+Pyramid of Doom
+
+
+-------------------------
+
+6. Callback Hell ka reason kya tha?
+
+Q: Why callback hell happened?
+
+A:
+Because dependent async operations needed
+
+Example:
+Payment → Invoice → Email → SMS
+
+One task depended on previous task,
+so callbacks became deeply nested.
+
+
+-------------------------
+
+7. Problems of Callback Hell
+
+Q: Problems with callback hell?
+
+A:
+1. Poor readability
+2. Difficult debugging
+3. Hard maintenance
+4. Difficult error handling
+5. Nested code complexity
+
+
+-------------------------
+
+8. Callback Hell avoid kaise karte hain?
+
+Q: How to avoid callback hell?
+
+A:
+
+1. Promises
+
+addProducts()
+.then(doPayment)
+.then(emailInvoice)
+.catch(console.error);
+
+
+2. Async/Await
+
+async function main() {
+    await addProducts();
+    await doPayment();
+    await emailInvoice();
+}
+
+
+-------------------------
+
+9. Anonymous callback kya hota hai?
+
+Q: What is anonymous callback?
+
+A:
+A callback function without a name.
+
+Example:
+
+setTimeout(function () {
+    console.log("Hello");
+}, 1000);
+
+OR
+
+setTimeout(() => {
+    console.log("Hello");
+}, 1000);
+
+
+-------------------------
+
+10. Named callback kya hota hai?
+
+Q: What is named callback?
+
+A:
+A callback function with a name.
+
+Example:
+
+function greet() {
+    console.log("Hello");
+}
+
+setTimeout(greet, 1000);
+
+-------------------------
+
+11. Function reference vs function call
+
+Q: Difference between:
+
+setTimeout(greet,1000)
+
+and
+
+setTimeout(greet(),1000)
+
+A:
+
+Correct:
+setTimeout(greet,1000)
+
+Function reference pass hua.
+
+
+Wrong:
+setTimeout(greet(),1000)
+
+Immediately execute ho jayega.
+
+
+=========================
+CALLBACK OUTPUT QUESTIONS
+=========================
+
+Q1
+
+function test(callback) {
+    console.log("A");
+    callback();
+}
+
+test(() => {
+    console.log("B");
+});
+
+console.log("C");
+
+Output:
+A
+B
+C
+
+
+-------------------------
+
+Q2
+
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Hello");
+}, 0);
+
+console.log("End");
+
+Output:
+Start
+End
+Hello
+
+Reason:
+setTimeout async hai.
+
+
+-------------------------
+
+Q3
+
+function a(cb) {
+    console.log("1");
+    cb();
+}
+
+function b() {
+    console.log("2");
+}
+
+console.log("3");
+
+a(b);
+
+console.log("4");
+
+Output:
+3
+1
+2
+4
+
+
+-------------------------
+
+Q4
+
+setTimeout(() => {
+    console.log("A");
+}, 0);
+
+console.log("B");
+
+setTimeout(() => {
+    console.log("C");
+}, 0);
+
+console.log("D");
+
+Output:
+B
+D
+A
+C
+
+Reason:
+FIFO callback queue.
+
+Visual flow
+===================
+Callback Queue
+[A, C]
+
+      ↓ (event loop)
+
+Call Stack
+[A]
+print A
+(empty)
+
+      ↓
+
+Call Stack
+[C]
+print C
+(empty)
+
+
+Event loop moves only ONE callback at a time from queue → stack.
+It never pushes both A and C together.
+So stack is never:
+[C]
+[A]
+====================
+
+
+-------------------------
+
+Q5
+
+function main(cb) {
+    console.log("X");
+
+    setTimeout(() => {
+        console.log("Y");
+        cb();
+    }, 1000);
+}
+
+main(() => {
+    console.log("Z");
+});
+
+Output:
+X
+Y
+Z
+
+
+-------------------------
+
+Q6 (TRICK)
+
+function hello() {
+    console.log("Hello");
+}
+
+setTimeout(hello(), 1000);
+
+Output:
+Hello
+
+Then error.
+
+Reason:
+Function immediately call ho gaya.
+
+Correct:
+setTimeout(hello, 1000)
+
+
+setTimeout(hello, 1000) works because we are passing a function reference.
+The function is executed later by setTimeout after 1 second.
+
+setTimeout(hello(), 1000) is wrong because hello() executes immediately, 
+and its return value (undefined) gets passed to setTimeout, which causes an error.
+
+If they ask “What is function reference?”, say:
+
+A function reference means passing the function itself without executing it.
+Example: hello is a reference, while hello() is a function call.
+
+If they ask “Why does hello() execute immediately?”, say:
+
+Parentheses () invoke the function immediately in JavaScript.
+
+setTimeout(hello, 1000);   // correct
+setTimeout(hello(), 1000); // wrong
+
+-------------------------
+
+Q7
+
+console.log("1");
+
+function test(cb) {
+    cb();
+}
+
+test(() => {
+    console.log("2");
+});
+
+console.log("3");
+
+Output:
+1
+2
+3
+
+
+-------------------------
+
+Q8
+
+setTimeout(() => {
+    console.log("A");
+}, 1000);
+
+console.log("B");
+
+Output:
+B
+A
+```
+===============================================
+
+===============================================
+
+=========================
+PROMISE INTERVIEW Q&A
+=========================
+
+1. What is Promise?
+
+Q: What is Promise in JavaScript?
+
+A:
+A Promise is an object representing the eventual
+completion or failure of an asynchronous operation.
+
+Simple:
+Future me jo value milegi uska placeholder object.
+
+Example:
+
+let p = new Promise((resolve, reject) => {
+    resolve("Success");
+});
+
+p.then((res) => {
+    console.log(res);
+});
+
+Output:
+Success
+
+
+-------------------------
+
+2. Why Promise came?
+
+Q: Why Promise introduced?
+
+A:
+Promise came to solve Callback Hell.
+
+Callback Hell made code:
+- unreadable
+- difficult to debug
+- difficult to maintain
+
+Callback Hell:
+
+login(() => {
+    getProfile(() => {
+        getPosts(() => {
+            logout();
+        });
+    });
+});
+
+Promise:
+
+login()
+.then(getProfile)
+.then(getPosts)
+.then(logout)
+.catch(console.error);
+
+
+-------------------------
+
+3. Promise states
+
+Q: What are Promise states?
+
+A:
+Promise has 3 states:
+
+1. Pending
+Initial state.
+
+Promise { <pending> }
+
+2. Fulfilled / Resolved
+Operation successful.
+
+resolve("Success")
+
+3. Rejected
+Operation failed.
+
+reject("Failed")
+
+
+IMPORTANT:
+State changes only once.
+
+Pending → Fulfilled
+OR
+Pending → Rejected
+
+After settle:
+Cannot change.
+
+
+-------------------------
+
+4. resolve() kya karta hai?
+
+Q: What is resolve()?
+
+A:
+resolve() marks promise as successful.
+
+Example:
+
+new Promise((resolve) => {
+    resolve("Done");
+})
+.then((res) => {
+    console.log(res);
+});
+
+Output:
+Done
+
+
+-------------------------
+
+5. reject() kya karta hai?
+
+Q: What is reject()?
+
+A:
+reject() marks promise as failed.
+
+Example:
+
+new Promise((resolve, reject) => {
+    reject("Error");
+})
+.catch((err) => {
+    console.log(err);
+});
+
+Output:
+Error
+
+
+-------------------------
+
+6. then() kya karta hai?
+
+Q: What is then()?
+
+A:
+then() handles success of promise.
+
+Syntax:
+
+promise.then(successCallback)
+
+Example:
+
+Promise.resolve("Hello")
+.then((res) => {
+    console.log(res);
+});
+
+Output:
+Hello
+
+
+-------------------------
+
+7. catch() kya karta hai?
+
+Q: What is catch()?
+
+A:
+catch() handles promise errors.
+
+Example:
+
+Promise.reject("Failed")
+.catch((err) => {
+    console.log(err);
+});
+
+Output:
+Failed
+
+
+-------------------------
+
+8. finally() kya karta hai?
+
+Q: What is finally()?
+
+A:
+finally() always executes.
+
+Success ya failure dono me.
+
+Example:
+
+fetchData()
+.then(() => {
+    console.log("Success");
+})
+.catch(() => {
+    console.log("Error");
+})
+.finally(() => {
+    console.log("Always");
+});
+
+Q: finally() me result milta hai?
+
+A:
+NO ❌
+
+
+-------------------------
+
+9. Promise Chaining
+
+Q: What is Promise chaining?
+
+A:
+Multiple async tasks ko sequence me chalana.
+
+Example:
+
+function step1() {
+    return Promise.resolve("Step1");
+}
+
+function step2() {
+    return Promise.resolve("Step2");
+}
+
+step1()
+.then((res) => {
+    console.log(res);
+    return step2();
+})
+.then((res) => {
+    console.log(res);
+});
+
+Output:
+Step1
+Step2
+
+
+-------------------------
+
+10. Why return important in chaining?
+
+Q: Why return important inside then()?
+
+A:
+Without return,
+next then() gets undefined.
+
+Wrong:
+
+a()
+.then(() => {
+    b();
+})
+.then((res) => {
+    console.log(res);
+});
+
+Output:
+undefined
+
+
+Correct:
+
+a()
+.then(() => {
+    return b();
+})
+
+OR
+
+a().then(() => b())
+
+
+-------------------------
+
+11. Promise constructor sync or async?
+
+Q: Promise constructor synchronous hota hai ya async?
+
+A:
+Executor function is synchronous.
+
+Example:
+
+console.log("1");
+
+new Promise(() => {
+    console.log("2");
+});
+
+console.log("3");
+
+Output:
+1
+2
+3
+
+
+-------------------------
+
+12. then() callback kaha jata hai?
+
+Q: Promise.then callback kaha jata hai?
+
+A:
+Microtask Queue.
+
+Higher priority than callback queue.
+
+Contains:
+- then()
+- catch()
+- finally()
+
+
+-------------------------
+
+13. Promise vs setTimeout
+
+Q: Why Promise executes before setTimeout?
+
+A:
+Because:
+
+Microtask Queue
+has higher priority than
+Callback Queue.
+
+Priority:
+
+Microtask Queue
+↓
+Callback Queue
+
+
+-------------------------
+
+14. Does then() return promise?
+
+Q: then() always promise return karta hai?
+
+A:
+YES ✅
+
+Always.
+
+Example:
+
+Promise.resolve()
+.then(() => {
+    return 10;
+});
+
+Internally becomes:
+
+Promise.resolve(10)
+
+
+-------------------------
+
+15. return value vs Promise.resolve()
+
+Q: Difference between:
+
+return 5
+
+and
+
+return Promise.resolve(5)
+
+inside then()?
+
+A:
+Practically same.
+
+JS auto-wrap kar deta hai.
+
+
+-------------------------
+
+16. Error propagation
+
+Q: Error chain me kaise handle hota?
+
+A:
+Error automatically catch me chala jata.
+
+Example:
+
+Promise.resolve()
+.then(() => {
+    throw new Error("failed");
+})
+.catch((err) => {
+    console.log(err.message);
+});
+
+Output:
+failed
+
+
+-------------------------
+
+17. Promise.all()
+
+Q: What is Promise.all()?
+
+A:
+Runs multiple promises in parallel.
+
+All must succeed.
+
+One fails → all fail.
+
+Example:
+
+Promise.all([
+    Promise.resolve("A"),
+    Promise.resolve("B")
+])
+.then(console.log);
+
+Output:
+["A", "B"]
+
+
+-------------------------
+
+18. Promise.allSettled()
+
+Q: What is Promise.allSettled()?
+
+A:
+Returns result of all promises.
+
+Even failed ones.
+
+Never fails.
+
+
+-------------------------
+
+19. Promise.race()
+
+Q: What is Promise.race()?
+
+A:
+Whichever promise settles first
+wins.
+
+
+-------------------------
+
+20. Promise.any()
+
+Q: What is Promise.any()?
+
+A:
+First successful promise wins.
+
+Ignores rejected promises.
+
+
+=========================
+PROMISE OUTPUT QUESTIONS
+=========================
+
+Q1
+
+console.log("1");
+
+new Promise(() => {
+    console.log("2");
+});
+
+console.log("3");
+
+Output:
+1
+2
+3
+
+Reason:
+Promise executor sync hota hai.
+
+
+-------------------------
+
+Q2
+
+console.log("1");
+
+const promise = new Promise((resolve) => {
+    console.log("2");
+    resolve();
+});
+
+promise.then(() => {
+    console.log("3");
+});
+
+console.log("4");
+
+Output:
+1
+2
+4
+3
+
+Reason:
+then() → microtask queue.
+
+
+-------------------------
+
+Q3
+
+console.log("Start");
+
+setTimeout(() => {
+    console.log("Timeout");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("Promise");
+});
+
+console.log("End");
+
+Output:
+Start
+End
+Promise
+Timeout
+
+Reason:
+Microtask > Callback queue
+
+
+-------------------------
+
+Q4
+
+Promise.resolve()
+.then(() => {
+    console.log("1");
+})
+.then(() => {
+    console.log("2");
+});
+
+console.log("3");
+
+Output:
+3
+1
+2
+
+
+-------------------------
+
+Q5
+
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("C");
+});
+
+console.log("D");
+
+Output:
+A
+D
+C
+B
+
+
+-------------------------
+
+Q6
+
+console.log("1");
+
+setTimeout(() => {
+    console.log("2");
+}, 0);
+
+Promise.resolve().then(() => {
+    console.log("3");
+});
+
+Promise.resolve().then(() => {
+    console.log("4");
+});
+
+console.log("5");
+
+Output:
+1
+5
+3
+4
+2
+
+
+-------------------------
+
+Q7
+
+Promise.resolve()
+.then(() => {
+    console.log("A");
+    return "B";
+})
+.then((data) => {
+    console.log(data);
+});
+
+Output:
+A
+B
+
+
+-------------------------
+
+Q8 (TRICK)
+
+function a() {
+    return Promise.resolve("A");
+}
+
+function b() {
+    return Promise.resolve("B");
+}
+
+a()
+.then(() => {
+    b();
+})
+.then((res) => {
+    console.log(res);
+});
+
+Output:
+undefined
+
+Reason:
+return missing.
+
+
+-------------------------
+
+Q9
+
+Promise.resolve()
+.then(() => {
+    throw new Error("Oops");
+})
+.catch((err) => {
+    console.log("Error");
+});
+
+Output:
+Error
+
+
+-------------------------
+
+Q10
+
+Promise.resolve("Hi")
+.then((res) => {
+    console.log(res);
+});
+
+Output:
+Hi
+```
+
+
+===================================
+
+
+==================================
+
+
+=========================
+ASYNC/AWAIT INTERVIEW Q&A
+=========================
+
+1. What is Async/Await?
+
+Q: What is async/await in JavaScript?
+
+A:
+Async/Await is a modern way to handle
+asynchronous code in JavaScript.
+
+It is built on top of Promises and makes
+async code look synchronous.
+
+Promise style:
+
+fetchData()
+.then((res) => {
+    console.log(res);
+})
+.catch((err) => {
+    console.log(err);
+});
+
+Async/Await:
+
+try {
+    const res = await fetchData();
+    console.log(res);
+}
+catch(err) {
+    console.log(err);
+}
+
+
+-------------------------
+
+2. Why async/await introduced?
+
+Q: Why async/await introduced?
+
+A:
+Async/Await introduced to improve readability.
+
+Promise chaining became messy:
+
+addProducts()
+.then(doPayment)
+.then(emailInvoice)
+.then(sendSMS)
+.catch(console.error);
+
+Better with async/await:
+
+async function main() {
+    try {
+        await addProducts();
+        await doPayment();
+        await emailInvoice();
+        await sendSMS();
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
+
+-------------------------
+
+3. What is async?
+
+Q: What is async keyword?
+
+A:
+async keyword makes a function
+always return a Promise.
+
+Example:
+
+async function hello() {
+    return "Hello";
+}
+
+console.log(hello());
+
+Output:
+Promise { 'Hello' }
+
+Internally:
+
+async function hello() {
+    return Promise.resolve("Hello");
+}
+
+
+IMPORTANT:
+async function always returns Promise.
+
+
+-------------------------
+
+4. async function normal value return kare toh?
+
+Q: What happens if async function returns normal value?
+
+A:
+JS automatically wraps it into Promise.
+
+Example:
+
+async function test() {
+    return 10;
+}
+
+test().then(console.log);
+
+Output:
+10
+
+Internally:
+
+return Promise.resolve(10);
+
+
+-------------------------
+
+5. What is await?
+
+Q: What is await keyword?
+
+A:
+await pauses execution until promise settles.
+
+But:
+
+It DOES NOT block entire JavaScript.
+
+It only pauses that async function.
+
+Example:
+
+function delay() {
+    return new Promise((resolve) => {
+        setTimeout(() => {
+            resolve("Done");
+        }, 2000);
+    });
+}
+
+async function main() {
+    console.log("1");
+
+    const result = await delay();
+
+    console.log(result);
+    console.log("2");
+}
+
+main();
+
+Output:
+1
+(after 2 sec)
+Done
+2
+
+
+-------------------------
+
+6. await only works with Promise?
+
+Q: Does await only work with Promise?
+
+A:
+NO ❌
+
+await can work with normal values too.
+
+Example:
+
+async function test() {
+    const x = await 10;
+    console.log(x);
+}
+
+test();
+
+Output:
+10
+
+Internally:
+
+await Promise.resolve(10)
+
+
+-------------------------
+
+7. Can we use await outside async?
+
+Q: Can await be used outside async function?
+
+A:
+NO ❌
+
+Wrong:
+
+function test() {
+    await fetchData();
+}
+
+Error:
+await is only valid in async function
+
+
+Correct:
+
+async function test() {
+    await fetchData();
+}
+
+
+-------------------------
+
+8. Error handling in async/await
+
+Q: How errors handled in async/await?
+
+A:
+Using try-catch.
+
+Example:
+
+function payment() {
+    return Promise.reject("Payment Failed");
+}
+
+async function main() {
+    try {
+        await payment();
+    }
+    catch(err) {
+        console.log(err);
+    }
+}
+
+main();
+
+Output:
+Payment Failed
+
+
+-------------------------
+
+9. Promise vs async/await
+
+Q: Difference between Promise and async/await?
+
+A:
+
+Promise:
+
+fetchData()
+.then()
+.catch()
+
+Async/Await:
+
+try {
+    await fetchData();
+}
+catch(err) {}
+
+Async/Await internally promises hi use karta.
+
+Readable hota hai.
+
+
+-------------------------
+
+10. Does async/await replace Promise?
+
+Q: Does async/await replace Promise?
+
+A:
+NO ❌
+
+Async/await is built on top of Promise.
+
+
+-------------------------
+
+11. Sequential vs Parallel execution
+
+Q: Difference between sequential and parallel execution?
+
+A:
+
+Sequential (slow):
+
+await task1();
+await task2();
+await task3();
+
+One-by-one execute.
+
+
+Parallel (fast):
+
+const p1 = task1();
+const p2 = task2();
+const p3 = task3();
+
+await p1;
+await p2;
+await p3;
+
+Best approach:
+
+await Promise.all([
+    task1(),
+    task2(),
+    task3()
+]);
+
+
+-------------------------
+
+12. await block karta hai?
+
+Q: Does await block JavaScript?
+
+A:
+NO ❌
+
+It pauses only async function.
+
+Not whole JS thread.
+
+
+-------------------------
+
+13. await behind the scenes kya karta?
+
+Q: What happens behind the scenes with await?
+
+A:
+Execution splits into 2 parts.
+
+Before await:
+runs synchronously.
+
+After await:
+goes into Microtask Queue.
+
+Example:
+
+async function test() {
+    console.log("A");
+
+    await Promise.resolve();
+
+    console.log("B");
+}
+
+Output:
+A
+B
+
+But internally:
+"B" microtask queue me jata hai.
+
+
+-------------------------
+
+14. async function callback queue me jata hai?
+
+Q: async function callback queue me jata hai?
+
+A:
+NO ❌
+
+After await,
+remaining code goes to:
+
+Microtask Queue
+
+
+-------------------------
+
+15. Difference between Promise.then and await
+
+Q: Difference between then() and await?
+
+A:
+
+then():
+
+fetchData().then((res) => {
+    console.log(res);
+});
+
+await:
+
+const res = await fetchData();
+
+Both internally use promises.
+
+await cleaner syntax deta.
+
+
+-------------------------
+
+16. Why Promise runs before setTimeout?
+
+Q: Why Promise executes before setTimeout?
+
+A:
+Because:
+
+Microtask Queue
+has higher priority than
+Callback Queue.
+
+Promise → Microtask Queue
+
+setTimeout → Callback Queue
+
+
+=========================
+ASYNC/AWAIT OUTPUT QUESTIONS
+=========================
+
+Q1
+
+async function hello() {
+    return "Hello";
+}
+
+console.log(hello());
+
+Output:
+Promise { 'Hello' }
+
+Reason:
+async always returns Promise.
+
+
+-------------------------
+
+Q2
+
+async function test() {
+    return 10;
+}
+
+test().then(console.log);
+
+Output:
+10
+
+
+-------------------------
+
+Q3
+
+console.log("Start");
+
+async function hello() {
+    console.log("A");
+
+    await Promise.resolve();
+
+    console.log("B");
+}
+
+hello();
+
+console.log("End");
+
+Output:
+Start
+A
+End
+B
+
+Reason:
+After await → microtask queue.
+
+
+-------------------------
+
+Q4
+
+console.log("1");
+
+async function test() {
+    console.log("2");
+
+    await Promise.resolve();
+
+    console.log("3");
+}
+
+test();
+
+console.log("4");
+
+Promise.resolve().then(() => {
+    console.log("5");
+});
+
+Output:
+1
+2
+4
+3
+5
+
+Reason:
+Microtask FIFO order.
+
+
+-------------------------
+
+Q5
+
+async function test() {
+    console.log("A");
+
+    await 10;
+
+    console.log("B");
+}
+
+console.log("C");
+
+test();
+
+console.log("D");
+
+Output:
+C
+A
+D
+B
+
+Reason:
+await 10 → Promise.resolve(10)
+
+
+-------------------------
+
+Q6
+
+async function main() {
+    console.log("1");
+
+    await Promise.resolve();
+
+    console.log("2");
+}
+
+console.log("3");
+
+main();
+
+console.log("4");
+
+Output:
+3
+1
+4
+2
+
+
+-------------------------
+
+Q7
+
+async function test() {
+    return Promise.resolve("Hello");
+}
+
+test().then(console.log);
+
+Output:
+Hello
+
+
+-------------------------
+
+Q8 (TRICK)
+
+async function test() {
+    throw new Error("Failed");
+}
+
+test().catch(() => {
+    console.log("Error");
+});
+
+Output:
+Error
+
+Reason:
+throw automatically reject ban jata.
+
+
+-------------------------
+
+Q9
+
+async function test() {
+    return await Promise.resolve("Done");
+}
+
+test().then(console.log);
+
+Output:
+Done
+
+
+-------------------------
+
+Q10
+
+console.log("A");
+
+setTimeout(() => {
+    console.log("B");
+}, 0);
+
+(async function () {
+    console.log("C");
+
+    await Promise.resolve();
+
+    console.log("D");
+})();
+
+console.log("E");
+
+Output:
+A
+C
+E
+D
+B
+
+Reason:
+await → microtask
+setTimeout → callback queue
+Microtask > callback queue
+```

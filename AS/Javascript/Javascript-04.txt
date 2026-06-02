@@ -1,0 +1,135 @@
+
+🔵Rest Operator (...)
+it is used for collecting all the values in one array.
+mostly use in:
+(1) function Parameters:- whatever values pass in function at the time of declaration.
+(2) array destructuring
+(3) object destructuring
+
+➡️array destructuring:- get the values from array and store in a variable.
+Example:
+let arr = [10,20,30,40];
+let[a,b,c,d] = arr;
+console.log(a);     // 10
+console.log(b);     // 20
+console.log(c);     // 30 
+console.log(d);     // 40
+
+➡️object destructuring:- get the values from object and store in a variable.
+Example:
+let data = {
+  name:"sem",
+  age:20
+}
+let{name,age} = data;
+console.log(name)   // sem
+console.log(age)    // 20
+
+
+Example Rest Operator:
+Example 1:
+function show(...nums){
+  console.log(num)
+}
+show(10,20,30,40,50)                    output // [10, 20, 30, 40, 50]
+
+Example 2:
+function sum(...nums){
+  let total = 0;
+
+  for(let num of nums){
+    total += num;
+  }
+  console.log(total);
+}
+sum(1,2,3,4)                            output // 10
+
+
+Array destructuring with rest Operator
+Example 1:
+let marks = [90,80,70,60];
+let [topper, ...remaining] = marks;
+
+console.log(topper);      // 90
+console.log(remaining);   // 80,70,60
+
+Example 2:
+const arr = [10, 20, 30, 40, 50, 60];
+let [a,b,c,...rest] = arr;
+console.log(a);       // 10
+console.log(b);       // 20
+console.log(c);       // 30
+console.log(rest);    // 40,50,60
+
+Object destructuring with rest Operator
+Example 1:
+let userInfo = {
+  name:'rohit',
+  age:28,
+  city:'noida'
+}
+
+let {name, ....otherDetails} = userInfo;
+console.log(name);                                // rohit
+console.log(otherDetails);                        // {age:28,city:'noida'}
+
+                                                  ***************************************
+🔵Spread Operator (...)
+it is used for expanding all the values.
+mostly use in:
+(1) copy array/object
+(2) merge array/object
+
+Example:
+(1)let arr = [1,2,3];
+cosnole.log(...arr);                   output// 1,2,3
+
+(2)let a = [1,2];
+let b = [3,4];
+
+let c = [...a, ...b]
+console.log(C)                        output// 1,2,3,4
+
+(3)let user = {
+   name:"Alpesh",
+   age:25
+};
+
+let copy = {...user};
+console.log(copy);                    output//  copy = {name:"Alpesh", age:25};
+
+=======================================================================================================================
+
+Shallow Copy: Shallow copy creates a new object or array at the top level, but nested objects/arrays still share the same reference.
+Top level copy, Top level safe
+nested level not safe we can easily change.
+
+const original = {
+  name: "Rahul",
+  address: {
+    city: "Delhi"
+  }
+};
+
+// Shallow copy
+const copy = { ...original };
+
+copy.name = "Aman";
+copy.address.city = "Mumbai";
+
+console.log(original.name); // Rahul
+console.log(original.address.city); // Mumbai
+
+
+Deep Copy: Nested safe
+Deep copy creates a completely independent clone, including all nested objects and arrays.
+
+let user = {
+ name:"Alpesh",
+ address:{city:"Dadri"}
+};
+
+let copy = JSON.parse(JSON.stringify(user));
+copy.address.city = "Noida";
+
+console.log(user.address.city);         // Dadri

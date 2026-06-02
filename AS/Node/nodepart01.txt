@@ -1,0 +1,233 @@
+1. What is node.js & Why Node.js is single threaded?
+
+Node.js is a runtime environment for executing the JavaScript on the server side.
+browser execute the JavaScript on the Client side same as node.js execute the JavaScript on the server side.
+
+Interview Definition:
+Node.js is single-threaded because it uses an event-driven and non-blocking architecture to handle multiple requests efficiently using the Event Loop.
+
+Easy Samjho:
+Node.js me 1 main thread hota hai, but wo ek time pe ek kaam karke wait nahi karta.
+
+Example:
+Pizza order diya → kitchen me bheja → tab tak dusra kaam karne lag gaya.
+
+Remember Line:
+👉 “Single thread, multiple tasks asynchronously.”
+
+==================================================
+
+2. What are Streams?
+
+Interview Definition:
+Streams are used to process data chunk-by-chunk instead of loading the entire data into memory.
+
+Easy Samjho:
+Maan lo 5GB file hai.
+
+❌ Without Stream → pura file RAM me load hogi.
+✅ With Stream → thoda-thoda (chunks) me process hogi.
+
+Like YouTube video buffering.
+
+Remember Line:
+👉 “Large data ko piece by piece process karna = Stream”
+
+==================================================
+
+3. Types of Streams?
+
+Interview Definition:
+There are 4 types of streams in Node.js:
+
+1. Readable Stream → Data read karta hai
+Example: fs.createReadStream()
+
+2. Writable Stream → Data write karta hai
+Example: fs.createWriteStream()
+
+3. Duplex Stream → Read + Write dono
+Example: Socket
+
+4. Transform Stream → Data modify bhi karta hai
+Example: Compression
+
+
+==================================================
+
+4. What is Buffer?
+
+Interview Definition:
+Buffer is used to store and handle binary data in Node.js.
+
+Easy Samjho:
+Node.js normally string handle karta hai.
+
+But image, video, PDF = binary data.
+
+Unko temporarily memory me rakhne ke liye Buffer use hota hai.
+
+Example:
+const buffer = Buffer.from("Hello");
+
+Remember Line:
+👉 “Binary data ko handle karna = Buffer”
+
+==================================================
+
+5. Difference between setTimeout and setImmediate?
+
+Interview Definition:
+setTimeout() executes after the timer phase, while setImmediate() executes after the I/O phase in the event loop.
+
+Easy Samjho:
+
+setTimeout():
+Delay ke baad run hota hai.
+
+Example:
+setTimeout(() => {
+ console.log("Hello");
+}, 1000);
+
+1 second baad chalega.
+
+setImmediate():
+Current operation khatam hote hi immediately run.
+
+Example:
+setImmediate(() => {
+ console.log("Hi");
+});
+
+Remember Trick:
+👉 Timeout = wait
+👉 Immediate = jaldi execute
+
+==================================================
+
+6. What is Cluster Module?
+
+Interview Definition:
+Cluster module is used to create multiple child processes to utilize multi-core CPUs and improve performance.
+
+Easy Samjho:
+Node.js single thread hai.
+
+Agar CPU me 4 cores hain toh?
+
+Cluster module multiple Node.js processes create karta hai.
+
+1 app → 4 CPUs use karegi.
+
+Remember Line:
+👉 “Single thread ko multi-core power dena = Cluster”
+
+==================================================
+
+7. What is child_process?
+
+Interview Definition:
+child_process module is used to execute system commands or external scripts from Node.js.
+
+Easy Samjho:
+Node.js ke andar Linux/Windows commands chalani ho:
+
+Example:
+const exec = require("child_process");
+
+exec("dir", (err, output) => {
+ console.log(output);
+});
+
+Use Case:
+- Run Python script
+- Execute OS command
+- Run shell commands
+
+Remember Line:
+👉 “External command run karna = child_process”
+
+==================================================
+
+8. How to handle uncaught exceptions?
+
+Interview Definition:
+Uncaught exceptions can be handled using process.on('uncaughtException').
+
+Example:
+process.on("uncaughtException", (err) => {
+ console.log("Error:", err.message);
+});
+
+Easy Samjho:
+Agar code crash hone wala ho aur error handle nahi hui ho → yeh catch karega.
+
+Remember Line:
+👉 “Unexpected app crash ko catch karna.”
+
+==================================================
+
+9. What is Middleware?
+
+Interview Definition:
+Middleware functions execute between the request and response cycle.
+
+Easy Samjho:
+Client Request → Middleware → Server Response
+
+Middleware ka kaam:
+- Authentication
+- Logging
+- Validation
+
+Example:
+app.use((req, res, next) => {
+ console.log("Middleware");
+ next();
+});
+
+Remember Trick:
+👉 “Request aur response ke beech wala function = Middleware”
+
+==================================================
+
+10. What is CORS?
+
+Interview Definition:
+CORS (Cross-Origin Resource Sharing) allows controlled access between different domains.
+
+Easy Samjho:
+
+Frontend:
+localhost:3000
+
+Backend:
+localhost:5000
+
+Browser bolega:
+❌ “Different origin, blocked!”
+
+Tab CORS allow karta hai.
+
+Example:
+app.use(cors());
+
+Remember Line:
+👉 “Different domain communication allow karna = CORS”
+
+==================================================
+
+🔥 SUPER SHORT REVISION (1 min before interview)
+
+• Node.js Single Thread → Event loop + async
+• Streams → Chunk by chunk data
+• Types → Readable, Writable, Duplex, Transform
+• Buffer → Binary data handle
+• setTimeout → Delay
+• setImmediate → Immediate
+• Cluster → Multi-core CPU use
+• child_process → System command run
+• uncaughtException → Unexpected errors catch
+• Middleware → Request-response ke beech function
+• CORS → Different domains allow

@@ -1,0 +1,464 @@
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+1) Q: Explain Angular architecture / complete project flow?
+
+Answer:
+In Angular, the application works using Components, Services, Modules, Routing, and APIs.
+
+Angular Architecture:- combination of multiple building blocks
+➡️component - basic building block of angular UI
+➡️module - group of components and service
+➡️service - used for business logic and api calls
+➡️template - used for where write html code.
+➡️Directive - control dom Behavior(show hide)
+➡️Routing - navigation between pages
+
+
+Yes, when Angular application starts, browser first loads index.html. 
+After that, Angular executes main.ts file, which bootstraps the application by loading AppModule.
+AppModule then loads the root component (AppComponent), and Angular renders it inside app-root.
+From there, routing and other components start loading.
+
+1. Browser Open
+   → User opens the Angular app URL.
+   → Browser starts loading the application.
+
+2. index.html (It provides an empty placeholder (`<app-root>`) for Angular.)
+       ↓
+3. main.ts (This is the entry point of the Angular app, It starts Angular and loads `AppModule`.)
+       ↓
+4. AppModule (app.module.ts) (This is the main configuration file of the app., It decides which component should load first.)
+In bootstrap: [AppComponent]
+       ↓
+5. AppComponent (It connects `<app-root>` with actual Angular content)
+Yani browser ke empty <app-root> ke andar AppComponent inject hoga.
+       ↓
+6. app.component.html (This renders the first UI of the application.)
+       ↓
+7. Routing (It loads components based on the current URL)
+       ↓
+8. Required Component
+   (home/dashboard.component.ts)
+   → The logic of that page runs here.
+   → API calls, functions, and data handling happen here.
+
+The complete flow in our project is:
+
+User performs an action like opening a page or clicking a button.
+The component handles UI and calls a service.
+The service makes API calls using HttpClient.
+The API returns data as an Observable.
+In the component, we use subscribe() to get the response.
+After receiving data, we store it in variables and bind it to HTML using interpolation, property binding, or directives.
+Angular change detection automatically updates the UI.
+
+Flow:
+
+User Action
+   ↓
+Component
+   ↓
+Service
+   ↓
+API Call
+   ↓
+Observable
+   ↓
+subscribe()
+   ↓
+Data Binding
+   ↓
+UI Updated
+
+For large applications, we use reusable components, shared modules, and lazy loading to improve performance.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+2) Q: How did you structure a large Angular project?
+
+Answer:
+
+In a large Angular project, I follow a feature-based structure to keep the code scalable and maintainable.
+
+We separated the application into modules like dashboard, users, reports, settings, etc.
+like in my project eps, dcs, meghone...
+
+We used:
+
+- Shared module for reusable components, pipes, directives
+- Core module for services and interceptors
+- Lazy loading for better performance
+- Environment Configuration separate environment files for dev, QA, and production.
+
+This structure made the project easy to scale and maintain.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+3) Q: How did you optimize Angular performance?
+
+Answer:
+
+In our project, performance was important because we had large data and multiple API calls.
+
+To improve performance, we used:
+
+- Lazy loading to reduce initial bundle size
+- trackBy in ngFor to avoid unnecessary re-rendering
+- OnPush change detection for better rendering performance
+- Debounce in search APIs
+- Pagination instead of loading huge data
+- Async pipe to reduce manual subscriptions
+
+These improvements helped reduce UI lag and improve loading speed.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+4) Q: How did you handle large amount of data in Angular?
+
+Answer:
+
+In our project, some screens had thousands of records.
+Instead of loading all data at once, we used server-side pagination.
+We fetched limited records page by page to improve performance.
+
+same as 3 ans
+
+This helped prevent UI freezing and improved user experience.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+5) Q: How do components communicate in Angular?
+
+Answer:
+
+Angular components communicate in different ways depending on the requirement.
+
+For Parent to Child communication, we used @Input().
+
+For Child to Parent communication, we used @Output() and EventEmitter.
+
+For sibling components or unrelated components, we used shared services with BehaviorSubject.
+
+Example:
+If user profile updated in one component, we shared updated data using BehaviorSubject so other components received changes automatically.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+6) Q: How did you handle API calls and error handling?
+
+Answer:
+
+I handled API calls by using async/await and Axios (or Fetch API) to get or send data between frontend and backend.
+First, I create a function to call the API, then I manage loading, success, and error states so the user gets proper feedback.
+
+For error handling:
+I use try-catch blocks to catch errors. If the API fails due to network issues or server problems, I show an error message to the user instead of crashing the application. I also check status codes like 200 for success, 404 for not found, and 500 for server errors to handle different cases properly.
+
+Simple Example (easy to explain):
+
+const getUsers = async () => {
+  try {
+    const response = await axios.get('/api/users');
+    console.log(response.data);
+  } catch (error) {
+    console.log("Something went wrong");
+  }
+};
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+7) Q: Which lifecycle hooks did you use and why?
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+8) Q: How did you avoid memory leaks?
+
+Answer:
+
+Memory leaks happen when subscriptions are not cleaned properly.
+
+To avoid this, we used:
+
+- unsubscribe() in ngOnDestroy()
+- takeUntil()
+- Async pipe whenever possible
+
+This prevented unnecessary API subscriptions from staying active after component destruction.
+
+It improved application performance and memory usage.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+9) Q: What is change detection in Angular?
+
+Answer:
+
+Change Detection >>> If data changes → Angular detects it → UI updates automatically
+whenever data change, then angular detect it and update the UI automatically.
+Real life analogy:-
+magine a digital scoreboard in a cricket match 
+
+When Virat Kohli hits a boundary:
+Score changes (data change)
+Scoreboard updates instantly (UI update)
+
+WHEN does Change Detection run? - Angular runs change detection automatically in many situations:
+1)User Actions
+Click button
+Input typing
+2)Async Operations
+API calls
+setTimeout / setInterval
+HTTP responses
+API returns data → Angular updates UI automatically
+
+Types of change Detection:
+1)Default strategy - Angular checks every component in the app whenever anything happens.
+2)OnPush - Angular does NOT check everything.
+It only checks when specific triggers happen. @input changes 
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+10) Q: Difference between ngIf and hidden?
+
+Answer:
+
+ngIf completely removes the element from DOM.
+
+hidden only hides the element but keeps it in DOM.
+
+We used ngIf when element was not needed to improve performance.
+
+We used hidden when we only wanted to show or hide quickly without recreating the DOM.
+
+
+━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+
+
+10) Q: Explain authentication flow in Angular.
+
+Answer:
+
+In our project, authentication worked using JWT token.
+
+When user logs in:
+
+- Login API gets called
+- Backend sends JWT token
+- Token stored in localStorage or sessionStorage
+- Interceptor automatically adds token in every API request
+- Route guards protect private routes
+
+If token is invalid or expired, user is redirected to login page.
+
+This helped secure the application.
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+12) Q: Why use trackBy in ngFor?
+
+Answer:
+
+Without trackBy, Angular re-renders the entire list whenever data changes.
+
+trackBy helps Angular identify changed items and only update required elements.
+
+This improves performance, especially for large lists or tables.
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+13) Q: Difference between Subject and BehaviorSubject?
+
+Answer:
+
+Subject does not store previous values.
+
+If subscriber joins late, it misses old data.
+
+BehaviorSubject stores the latest value and immediately sends it to new subscribers.
+
+We mostly used BehaviorSubject for shared data like logged-in user info and application state.
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+15) Q: Explain interceptor with real use case.
+
+Answer:
+
+Interceptor is used to intercept HTTP requests and responses globally.
+
+In our project, we used interceptors for:
+
+- Adding JWT token automatically
+- Global error handling
+- API loading spinner
+- Common headers
+
+This reduced duplicate code across components.
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+16) Q: How did you create reusable components?
+
+Answer:
+
+We created reusable components for common UI like tables, modals, buttons, loaders, and forms.
+
+Instead of repeating code, we used @Input() for dynamic data and @Output() for events.
+
+This reduced duplicate code and improved maintainability.
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+17) Q: Tell me one challenging bug you solved.
+
+Answer:
+
+One issue we faced was multiple API calls triggering unnecessarily because subscriptions were not handled properly.
+
+We fixed it using debounceTime(), switchMap(), and proper unsubscribe logic.
+
+This improved performance and reduced server load.
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+18) Q: Why use lazy loading?
+
+Answer:
+
+Lazy loading helps improve performance.
+
+Instead of loading the complete application initially, Angular loads modules only when needed.
+
+This reduces initial bundle size and improves loading speed.
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+19) Q: Difference between Promise and Observable?
+
+Answer:
+
+Promise returns only one value.
+
+Observable can return multiple values over time.
+
+Observable supports operators like map, filter, debounceTime, retry, etc.
+
+Observable is cancellable, Promise is not.
+
+Angular mainly uses Observable for API handling.
+
+
+━━━━━━━━━━━━━━━━━━━━━━
+
+20) Q: How did you secure Angular application?
+
+Answer:
+
+We secured the application using:
+
+- JWT authentication
+- Route guards
+- HTTP interceptor
+- Role-based access
+- Token validation
+
+Sensitive pages were protected using guards, and unauthorized users could not access private routes.
+
+
+
+
+6) Q: How did you manage shared state in Angular?
+
+Answer:
+
+For shared state management, we mostly used BehaviorSubject inside services.
+
+BehaviorSubject stores the latest value and shares data between components.
+
+For example:
+
+If logged-in user information changed, we updated the BehaviorSubject and all subscribed components automatically received updated data.
+
+For small to medium projects, this worked well.
+
+For large enterprise projects, NgRx can also be used.
+
+
+
+
+
+
+
+
+
+1. What is the latest JavaScript version you have used?
+I have worked with modern JavaScript (ES6+) and used latest features like async/await, optional chaining, destructuring, spread operator, promises, modules, etc.
+
+2. Do you have exposure working in Vanilla JavaScript?
+Yes, I have worked with Vanilla JavaScript. Vanilla JavaScript means pure JavaScript without using any framework or library like Angular or React. I used it for DOM manipulation, event handling, form validation, and API calls.
+
+3. What are ES6 features?
+ECMAScript introduced many new JavaScript features that make code shorter, cleaner, and easier to write. I have used features like let/const, arrow functions, rest and spread operator, promise, async await.
+
+4. What latest Angular version have you used?
+I worked on Angular 16 and used features like routing, API integration, RxJS, lazy loading, change detection, lifecycle hooks, and component communication such as @Input, @Output, ViewChild, and ContentChild
+
+5. What are new features of Angular 21?
+I have worked on Angular 16, but I keep myself updated with newer versions. I know Angular 21 introduced improvements like Standalone Components, Signals, Zoneless Change Detection, Signal Forms, and performance improvements for faster and cleaner development
+
+6. What are directives?
+7. Explain lifecycle hooks in Angular.
+8. Which RxJS operators have you used?
+9. How to use RxJS in TypeScript if you want to handle errors and retry API up to 3 times?
+10. After subscribing, will you handle error or before subscribing?
+11. Explain complete flow — how response comes, subscribe works, and error handling happens.
+12. Before subscribing, how will you implement logic?
+13. Why do we use pipe before subscribing?
+14. Then why do we use map operator?
+15. What does filter operator do?
+16. How will you implement lazy loading in Angular?
+17. What are ways to optimize Angular application?
+18. Have you worked on Micro Frontend architecture?
+19. Difference between Signals and BehaviorSubject.
+20. Have you used BehaviorSubject in any real scenario?
+21. If I want to change CSS dynamically, how will you do it?
+22. Is ngClass the only way to change CSS dynamically?
+23. Create a custom directive to change background color on hover / unhover. How will you implement it?
+24. What exactly does HostListener do?
+25. I want to toggle element dynamically without using *ngIf. How will you do it?
+26. In a large Angular application, how do you pass data between components?
+27. Different ways to share data between components.
+28. What is Multi Provider Token?
+29. What are route guards?
+30. How will you implement Page Not Found route?
+31. How to set query parameters?
+32. Remove duplicate elements from array
+    `arr = [1, 2, 2, 3, 4, 4, 5]`
+    Asked to implement using both built-in method and for loop.
+33. How will you mock a service?
+34. Have you used Angular testing frameworks?
+35. What deployment activities have you handled?

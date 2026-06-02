@@ -1,0 +1,133 @@
+Step 1: Foundations (Absolute Beginner)
+What is JavaScript & how it works in browsers
+How to run JS (browser console, Node.js basics)
+Variables: var, let, const
+Data types:
+Primitive (string, number, boolean, null, undefined, symbol, bigint)
+Non-primitive (objects, arrays)
+Operators (arithmetic, comparison, logical)
+Type coercion (very important for interviews)
+
+Step 2: Control Flow & Logic
+if, else, switch
+Loops:
+for, while, do...while
+for...of, for...in
+Break & continue
+Truthy & falsy values
+
+Step 3: Functions (Core Concept)
+Function declarations vs expressions
+Arrow functions
+Parameters & return values
+Default parameters
+Rest & spread (...)
+First-class functions
+Callbacks
+
+Step 4: Arrays & Objects (Very Important)
+Array methods:
+map, filter, reduce, forEach
+slice, splice
+Object basics:
+Keys, values, entries
+Destructuring
+Deep vs shallow copy
+
+Step 5: Scope & Closures (Interview Favorite)
+Global vs local scope
+Block scope
+Lexical scope
+Closures (VERY IMPORTANT)
+Hoisting
+
+Step 6: this Keyword & Execution Context
+What is this?
+call, apply, bind
+Execution context
+Call stack
+
+Step 7: DOM Manipulation (Browser JS)
+Selecting elements
+Event handling
+Event bubbling & capturing
+DOM traversal
+
+Step 8: Asynchronous JavaScript
+Synchronous vs asynchronous
+Callbacks
+Promises
+async/await
+Event loop (CRITICAL for interviews)
+
+Step 9: Error Handling
+try...catch
+Throwing errors
+Custom errors
+
+Step 10: Advanced Concepts
+Closures (deep dive)
+Currying
+Debouncing & throttling
+Memoization
+Prototype & prototypal inheritance
+Classes in JS
+
+Step 11: ES6+ Features
+Template literals
+Modules (import/export)
+Optional chaining (?.)
+Nullish coalescing (??)
+Sets & Maps
+
+Step 12: Design Patterns & Architecture
+Module pattern
+Singleton pattern
+Factory pattern
+MVC basics
+
+Step 13: Performance & Optimization
+Event delegation
+Lazy loading
+Code splitting
+Memory leaks
+
+                                *******************************************************************
+
+
+
+                                
+What is JavaScript?
+Difference between var, let, and const?
+What are data types in JS?
+What is undefined vs null?
+What are truthy and falsy values?
+Difference between == and ===?
+
+What is a function in JavaScript?
+What are arrow functions?
+What is hoisting?
+What is scope?
+Difference between for...in and for...of?
+What is an object?
+
+What is a closure?
+Explain this keyword.
+What is the event loop?
+What are promises?
+Difference between synchronous & asynchronous code?
+What is destructuring?
+
+What is prototypal inheritance?
+Difference between call, apply, bind?
+What are higher-order functions?
+What is currying?
+What is debounce vs throttle?
+What is shallow vs deep copy?
+
+Explain execution context in JS.
+How does the call stack work?
+What are microtasks vs macrotasks?
+How does async/await work internally?
+What is memory management in JS?
+What are closures used for in real-world apps?

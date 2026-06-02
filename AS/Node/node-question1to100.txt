@@ -1,0 +1,632 @@
+========================
+NODE.JS INTERVIEW ROADMAP
+(LOW → HIGH LEVEL ORDER)
+========================
+
+LEVEL 0 — FOUNDATION
+
+1. Node.js kya hai?
+Ans:
+Node.js JavaScript runtime environment hai jo browser ke bahar JavaScript run karne deta hai.
+
+2.Node browser ke bahar JS kaise chalata hai?
+
+V8 engine open-source hai. Node.js us engine ko embed karta hai, isliye browser ke bina bhi JavaScript execute ho jati hai.
+Browser APIs ki jagah Node backend APIs provide karta hai.
+
+CONFUSION:
+“Agar V8 browser ke andar hota hai, toh Node browser ke bahar JavaScript kaise chalata hai?”
+
+ANSWER:
+
+V8 sirf browser ka part nahi hai.
+V8 ek separate open-source JavaScript engine hai.
+
+Chrome browser ke andar V8 laga hota hai.
+
+Chrome Structure:
+
+Chrome Browser
+--------------------------------
+UI
+Tabs
+Address Bar
+DOM
+Window Object
++
+V8 Engine
+--------------------------------
+
+Browser me jab hum JavaScript likhte hain:
+
+console.log("hello")
+
+toh Chrome ke andar laga V8 engine us code ko execute karta hai.
+
+--------------------------------------------
+
+Node.js ne kya kiya?
+
+Node ne poora browser use nahi kiya.
+
+Node ne sirf V8 engine ko uthaya (embed kiya)
+aur apna alag runtime bana diya.
+
+Node Structure:
+
+Node.js Runtime
+--------------------------------
+V8 Engine
++
+File System (fs)
+HTTP Module
+OS Access
+Process APIs
+Event Loop
+--------------------------------
+
+Jab tum terminal me likhte ho:
+
+node app.js
+
+Tab actual flow hota hai:
+
+JavaScript Code
+       ↓
+Node Runtime (node.exe)
+       ↓
+Embedded V8 Engine
+       ↓
+Machine Code
+       ↓
+CPU execute karta hai
+
+Matlab:
+
+Browser me:
+JS → Chrome → V8 → Execute
+
+Node me:
+JS → Node Runtime → V8 → Execute
+
+DIFFERENCE:
+
+Browser APIs:
+window
+document
+localStorage
+DOM
+
+Node APIs:
+fs
+http
+path
+process
+
+Browser me ye chalega:
+document.getElementById()
+
+Node me error dega.
+
+Node me ye chalega:
+const fs = require("fs")
+
+Browser me error dega.
+
+MOST IMPORTANT LINE (YAAD KARLO):
+
+JavaScript ko chalane ke liye engine chahiye.
+Browser mandatory nahi hai.
+
+Browser ek jagah hai jahan V8 laga hota hai.
+Node dusri jagah hai jahan wahi V8 Node runtime ke andar embed kiya gaya hai.
+
+INTERVIEW ANSWER:
+
+“V8 engine open-source hai. Node.js ne us engine ko apne runtime (node executable) ke andar embed kiya hua hai.
+ Isliye browser ke bina bhi JavaScript execute ho jati hai. Browser APIs ki jagah Node backend APIs provide karta hai.”
+
+3. Node.js kyun bana?
+Ans:
+Browser ke bahar JavaScript chalane aur scalable backend banane ke liye.
+
+4. Node.js ki khas baat?
+Ans:
+Fast, non-blocking, event-driven aur scalable.
+
+5. Node.js single-threaded hai?
+Ans:
+Haan, JavaScript execution single thread pe hota hai.
+
+Follow-up:
+Internally libuv thread pool heavy tasks handle karta hai.
+
+6. Node.js synchronous hai ya asynchronous?
+Ans:
+Dono support karta hai, but mostly asynchronous architecture use hota hai.
+
+7. Blocking vs Non-blocking?
+Ans:
+Blocking → code wait karta hai.
+Non-blocking → next task continue hota hai.
+
+Example:
+readFileSync() → blocking
+readFile() → non-blocking
+
+8. Event-driven architecture kya hota hai?
+Ans:
+Events trigger hote hain aur unke basis pe code execute hota hai.
+
+9. Event loop kya hai?
+Ans:
+Call stack aur callback queue ko manage karta hai aur async tasks execute karata hai.
+
+10. Node.js fast kyun hai?
+Ans:
+V8 engine aur non-blocking architecture ki wajah se.
+
+
+========================
+LEVEL 1 — ENVIRONMENT
+========================
+
+11. Node version check kaise?
+node -v
+
+12. npm kya hai?
+Ans:
+Node Package Manager. Packages install/manage karta hai.
+
+13. npx kya hai?
+Ans:
+Package ko install kiye bina directly run karta hai.
+
+14. package.json kya hai?
+Ans:
+Project metadata aur dependencies ki file.
+
+15. package-lock.json kya hai?
+Ans:
+Dependency versions lock karta hai.
+
+16. dependency vs devDependency?
+Ans:
+dependency → production
+devDependency → development only
+
+Example:
+nodemon → devDependency
+
+17. npm init -y kya karta hai?
+Ans:
+Project initialize karta hai.
+
+18. npm install kya karta hai?
+Ans:
+Package install karta hai.
+
+19. npm start kya hai?
+Ans:
+package.json script run karta hai.
+
+20. nodemon kya hai?
+Ans:
+File change pe server auto restart karta hai.
+
+
+========================
+LEVEL 2 — MODULE SYSTEM
+========================
+
+21. Module kya hota hai?
+Ans:
+Har file ek module hoti hai.
+
+22. require kya hai?
+Ans:
+Old syntax module import karne ka.
+
+Example:
+const fs = require("fs")
+
+23. import kya hai?
+Ans:
+Modern ES module syntax.
+
+Example:
+import fs from "fs"
+
+24. require vs import?
+Ans:
+require → CommonJS
+import → ES Module
+
+25. export kya hai?
+Ans:
+Code dusri file me accessible banata hai.
+
+26. module.exports kya hai?
+Ans:
+Old export syntax.
+
+27. named export kya hai?
+Ans:
+Multiple exports.
+
+Example:
+export const add = ()=>{}
+
+28. default export kya hai?
+Ans:
+Ek main export.
+
+Example:
+export default add
+
+29. CommonJS kya hai?
+Ans:
+Old module system.
+
+30. ES Module kya hai?
+Ans:
+Modern JavaScript module system.
+
+
+========================
+LEVEL 3 — CORE MODULES
+========================
+
+31. fs module kya hai?
+Ans:
+File system operations ke liye.
+
+32. path module kya hai?
+Ans:
+File path handle karta hai.
+
+33. os module kya hai?
+Ans:
+OS information deta hai.
+
+34. http module kya hai?
+Ans:
+Server create karne ke liye.
+
+35. events module kya hai?
+Ans:
+Custom events create karne ke liye.
+
+36. stream kya hota hai?
+Ans:
+Large data chunk by chunk process karta hai.
+
+37. buffer kya hota hai?
+Ans:
+Binary data temporary memory me store karta hai.
+
+38. process object kya hai?
+Ans:
+Running process ki information.
+
+39. __dirname kya hai?
+Ans:
+Current folder path.
+
+40. __filename kya hai?
+Ans:
+Current file path.
+
+
+========================
+LEVEL 4 — ASYNC PROGRAMMING
+(MOST IMPORTANT)
+========================
+
+41. Callback kya hai?
+Ans:
+Function jo dusre function me pass hota hai.
+
+42. Callback hell kya hai?
+Ans:
+Nested callbacks ki problem.
+
+43. Promise kya hai?
+Ans:
+Async operations ko handle karne ka better way.
+
+States:
+pending
+fulfilled
+rejected
+
+44. Promise methods?
+Ans:
+then()
+catch()
+finally()
+
+45. async keyword kya karta hai?
+Ans:
+Function ko promise bana deta hai.
+
+46. await kya karta hai?
+Ans:
+Promise resolve hone ka wait karta hai.
+
+47. async/await better kyun?
+Ans:
+Readable aur clean code.
+
+48. try-catch async me kyun?
+Ans:
+Error handling ke liye.
+
+49. setTimeout async hai?
+Ans:
+Haan.
+
+50. setInterval kya karta hai?
+Ans:
+Repeated execution.
+
+
+========================
+LEVEL 5 — EVENT LOOP
+========================
+
+51. Call stack kya hai?
+Ans:
+Function execution stack.
+
+LIFO:
+Last In First Out
+
+52. Callback queue kya hai?
+Ans:
+Async callbacks wait karte hain.
+
+FIFO:
+First In First Out
+
+53. Microtask queue kya hai?
+Ans:
+Promise callbacks ki queue.
+High priority hoti hai.
+
+54. Promise ya setTimeout pehle?
+Ans:
+Promise pehle.
+
+55. Event loop flow?
+Ans:
+Stack empty hua →
+callback queue execute hui.
+
+56. setImmediate() kya hai?
+Ans:
+Next cycle me execute hota hai.
+
+57. process.nextTick() kya hai?
+Ans:
+Highest priority callback.
+
+58. nextTick vs setImmediate?
+Ans:
+nextTick pehle execute hota hai.
+
+59. Node block kyun nahi hota?
+Ans:
+Async architecture ki wajah se.
+
+60. I/O operations kya hoti hain?
+Ans:
+File, DB, network operations.
+
+
+========================
+LEVEL 6 — EXPRESS.JS
+========================
+
+61. Express kya hai?
+Ans:
+Node.js framework.
+
+62. Express kyun use karte?
+Ans:
+Easy routing aur API creation.
+
+63. app.listen() kya karta hai?
+Ans:
+Server start karta hai.
+
+64. Routing kya hoti hai?
+Ans:
+URL mapping.
+
+65. Middleware kya hai?
+Ans:
+Request-response ke beech ka function.
+
+66. next() kya karta hai?
+Ans:
+Next middleware execute karta hai.
+
+67. req object kya hai?
+Ans:
+Client request data.
+
+68. res object kya hai?
+Ans:
+Client ko response bhejna.
+
+69. express.json() kya hai?
+Ans:
+JSON body parse karta hai.
+
+70. Common status codes?
+Ans:
+200 → success
+201 → created
+400 → bad request
+401 → unauthorized
+404 → not found
+500 → server error
+
+
+========================
+LEVEL 7 — API CONCEPTS
+========================
+
+71. API kya hai?
+Ans:
+Communication medium.
+
+72. REST API kya hai?
+Ans:
+HTTP methods based API.
+
+73. GET method?
+Ans:
+Data fetch.
+
+74. POST method?
+Ans:
+Data create.
+
+75. PUT method?
+Ans:
+Full update.
+
+76. PATCH method?
+Ans:
+Partial update.
+
+77. DELETE method?
+Ans:
+Data delete.
+
+78. Params kya hote hain?
+Ans:
+URL variables.
+
+Example:
+/user/5
+
+79. Query params kya hote hain?
+Ans:
+Filter/search values.
+
+Example:
+?page=1
+
+80. JSON kya hai?
+Ans:
+Data exchange format.
+
+
+========================
+LEVEL 8 — DATABASE
+========================
+
+81. PostgreSQL connect kaise?
+Ans:
+pg package se.
+
+82. ORM kya hota hai?
+Ans:
+Database abstraction layer.
+
+Example:
+sequelize
+
+83. Query kaise run hoti?
+Ans:
+db.query()
+
+84. Connection pooling kya hota hai?
+Ans:
+Multiple DB connections manage karta hai.
+
+85. Pool kyun use karte?
+Ans:
+Performance better hoti hai.
+
+
+========================
+LEVEL 9 — SECURITY
+========================
+
+86. dotenv kya hai?
+Ans:
+Environment variables manage karta hai.
+
+87. process.env kya hai?
+Ans:
+Environment variable access.
+
+88. JWT kya hai?
+Ans:
+Authentication token.
+
+89. Hashing kya hai?
+Ans:
+Password secure conversion.
+
+90. bcrypt kya hai?
+Ans:
+Password hashing library.
+
+
+========================
+LEVEL 10 — ADVANCED
+========================
+
+91. Cluster kya hota hai?
+Ans:
+Multiple CPU cores use karta hai.
+
+92. Streams useful kyun?
+Ans:
+Memory efficient.
+
+93. Scaling kya hai?
+Ans:
+More traffic handle karna.
+
+94. Node realtime apps ke liye acha kyun?
+Ans:
+Event-driven architecture.
+
+95. Socket kya hai?
+Ans:
+Realtime communication.
+
+96. Memory leak kya hota hai?
+Ans:
+Unused memory free na hona.
+
+97. Error-first callback?
+Ans:
+(err, data)
+
+98. Unhandled Promise Rejection?
+Ans:
+Promise error handle na karna.
+
+99. Process crash avoid kaise?
+Ans:
+Proper error handling.
+
+100. Why hire you for Node role?
+Ans:
+I have around 3 years of experience in Angular, JavaScript and PostgreSQL. I have worked with APIs and made changes in Node.js as well. My JavaScript fundamentals are strong and I can quickly adapt to backend development.
+
+========================
+READING ORDER
+========================
+
+0 → 1 → 2 → 4 → 5 → 6 → 7 → 8 → 9 → 10
+
+Ye sequence follow karoge toh interviewer jo bhi puchega connected lagega.
+```

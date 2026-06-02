@@ -1,0 +1,52 @@
+Closure: it is a combination of function and lexical scope (we can also say require data, surrounding state)
+
+If innerFunction access outerFunction variable that's called lexical scope
+If innerFunction store the outerFunction variable after reatin even execution its called closure.
+
+Example 1:-
+function outerFunction(){
+let name = 'neha';
+
+function innerFunction(){
+console.log(name);
+}
+innerFunction();
+}
+
+outerFunction();                    // neha
+
+Example 2:-
+function outerFunction(){
+let name = 'ravi';
+
+function innerFunction(){
+console.log(name);
+}
+return innerFunction;
+}
+
+let inner = outerFunction();        
+inner();                        // ravi
+
+Example 3:
+function showName(){
+   let name = "rohit";
+
+   setTimeout(()=>{
+    console.log(name);
+   },2000)
+}
+
+showName();                     // rohit
+
+
+1. showName() call hua
+2. Call Stack me gaya
+3. name variable function ki local memory me store hua
+4. setTimeout browser Web API ko diya gaya
+5. showName() execution complete
+6. Callback Queue me callback function aaya
+7. Event Loop ne dekha stack empty hai
+8. Callback Queue se callback Stack me push hua
+9. callback execute hua
+10. name print ho gaya

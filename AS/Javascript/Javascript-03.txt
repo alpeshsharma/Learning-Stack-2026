@@ -1,0 +1,151 @@
+🔵Function:- A function is a reusable block of code that performs a specific task.
+
+Function Declaration vs Function Expression
+A. Function Declaration
+
+function greet() {
+  console.log("Hello");
+}
+
+B. Function Expression --> Function stored in variable.
+const greet = function() {
+  console.log("Hello");
+};
+
+🔵Parameter vs Argument?
+Paramerter means whatever value pass in function
+Argument means whatever value pass at the time of calling
+
+function add (a,b){
+  return a+b;
+}
+
+console.log(add(2,3)) // 5
+
+now a,b ---> Parameters
+2,3     ---> Argument
+
+
+🔵Arrow Function:
+Arrow functions do not have their own this.
+They inherit this from the parent scope.
+
+
+const add = (num1, num2) =>{
+  return a+b;                                  -----------------> Explicit return
+}
+
+const add = (num1, num2) => num1 + num2
+const add = (num1, num2) =>( num1 + num2)       -----------------> Implicit return
+
+
+🔵Arrow vs normal function ?
+
+| Feature                   | Normal Function             | Arrow Function            |
+| ------------------------- | --------------------------- | ------------------------- |
+| Syntax                    | Long                        | Short                     |
+| `this` keyword            | Own `this` hota hai         | Parent ka `this` leta hai |
+| `arguments` object        | Available                   | Not available             |
+| Hoisting                  | Yes (declaration)           | No                        |
+| Constructor ban sakta hai | Yes                         | No                        |
+| Best Use                  | Object methods, constructor | Callback, short functions |
+
+>> Noraml Function:-
+(1)function sayHi(){
+ console.log("Hi");
+}
+
+
+(2)const user = {
+  name:"checking",
+  showName: function(){
+    console.log(this.name);
+  }
+}
+
+user.showName();    output// checking
+
+
+>>Arrow Function:-
+(1)const sayHi = () => console.log("Hi");
+
+(2) const user = {
+  name:"checking",
+  checking:()=>{
+    console.log(this.name);
+  }
+}
+
+user.checking();    output// undefined
+
+(3) const user = {
+  name:"checking",
+  showName:function(){
+    setTimeOut(()=>{
+      console.log(this.name);
+    },2000)
+  }
+}
+
+user.showName();    output// checking
+ 
+>>>>> Normal function has their own this, but arrow function have not their own this if i use then showing undefined its uses outerscope this.
+
+➡️Normal Function:-
+Normal function has their arguments object
+(1)function demo(){
+   console.log(arguments);
+}
+
+demo(10,20,30);
+
+
+(2)Hoisting possible
+hello();
+function hello(){
+   console.log("Hello");
+}                                // Hello
+
+
+(3) In normal function we can use in constructor
+function Person (name){
+  this.name = name;
+}
+const p1 = new Person('ankit');
+console.log(p1.name);     // ankit
+
+
+➡️Arrow Function:-
+Arrow Function no arguments object
+(1)const demo = () => {
+   console.log(arguments);
+}
+demo(1,2);        // error not defined
+
+(2) no hoisted (Hoisting not possible) --  because array function mostly store in varible let, const and in varible TDZ
+hello();
+const hello = () => {
+   console.log("Hello");
+}
+
+(3) we cannot create constructor in arrow function
+const Person = (name)=>{
+  this.name = name;
+}
+
+const p1 = new Person('ankit');     // Person is not a constructor
+
+Use Normal Function when:
+object method
+constructor
+arguments needed
+
+Use Arrow Function when:
+callback
+map/filter/reduce
+short code
+
+
+
+A callback is a function passed as an argument to another function and executed later.
+
