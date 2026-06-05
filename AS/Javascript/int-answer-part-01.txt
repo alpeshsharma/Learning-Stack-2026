@@ -1,3 +1,19 @@
+1. What is JavaScript?
+2. Difference between var, let, const?
+3. What is hoisting?
+4. Difference between == and ===
+5. Primitive data types?
+6. What is closure?
+7. What is lexical scope?
+8. What is callback function?
+9. What is callback hell?
+10. What is Promise?
+11. Promise states?
+12. What is async/await?
+13. Synchronous vs Asynchronous?
+14. What is Event Loop?
+15. What is Call Stack?
+
 Ans: 16 
 ================================================
 Higher-Order Function

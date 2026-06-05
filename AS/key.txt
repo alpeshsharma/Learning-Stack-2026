@@ -6,7 +6,7 @@ Var vs Let vs Const
 Primitive data types 
 Coercion - Implicit, Explicit
 
-this keyword
+this keyword (working in multiple scenarios)
 function, arrow function
 rest Operator, spread Operator, shallow copy, deep copy
 closure

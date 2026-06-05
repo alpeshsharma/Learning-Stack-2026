@@ -45,7 +45,7 @@ Execution Context ke 2 phases:
             ↓ 
 1. Memory Creation Phase
    - variables → undefined
-   - functions → memory me store
+   - functions → memory me store (only reference not whole fn)
 
 2. Code Execution Phase
    - code line by line execute
@@ -122,9 +122,13 @@ Step 5: Stack empty → Event Loop pushes callback.
 
 
 🔵Var vs Let vs Const
+
+variables means it is container used to store any data/value.
+and datatype means what type of value stored in that container like string num etc
+
 var - old way, function scoped, re-declare allowed
-let - blocked scoped, not re-declare, update
-const - block scoped, not re-declare, update
+let - blocked scoped, not re-declare, only update
+const - block scoped, not re-declare, not update
 
 | Feature    | var           | let     | const   |
 | ---------- | ------------- | ------- | ------- |
