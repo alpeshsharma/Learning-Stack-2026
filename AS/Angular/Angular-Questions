@@ -1,4 +1,5 @@
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
+
 1) Q: Explain Angular architecture / complete project flow?
 
 Answer:
@@ -71,8 +72,7 @@ UI Updated
 
 For large applications, we use reusable components, shared modules, and lazy loading to improve performance.
 
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
 
 2) Q: How did you structure a large Angular project?
 
@@ -92,8 +92,7 @@ We used:
 
 This structure made the project easy to scale and maintain.
 
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
 
 3) Q: How did you optimize Angular performance?
 
@@ -112,8 +111,7 @@ To improve performance, we used:
 
 These improvements helped reduce UI lag and improve loading speed.
 
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
 
 4) Q: How did you handle large amount of data in Angular?
 
@@ -127,8 +125,7 @@ same as 3 ans
 
 This helped prevent UI freezing and improved user experience.
 
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
 
 5) Q: How do components communicate in Angular?
 
@@ -145,9 +142,7 @@ For sibling components or unrelated components, we used shared services with Beh
 Example:
 If user profile updated in one component, we shared updated data using BehaviorSubject so other components received changes automatically.
 
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
-
+==================================================================================================================================================
 
 6) Q: How did you handle API calls and error handling?
 
@@ -171,12 +166,12 @@ const getUsers = async () => {
 };
 
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
 
 7) Q: Which lifecycle hooks did you use and why?
 
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
 
 8) Q: How did you avoid memory leaks?
 
@@ -194,8 +189,8 @@ This prevented unnecessary API subscriptions from staying active after component
 
 It improved application performance and memory usage.
 
+==================================================================================================================================================
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
 
 9) Q: What is change detection in Angular?
 
@@ -225,8 +220,7 @@ Types of change Detection:
 2)OnPush - Angular does NOT check everything.
 It only checks when specific triggers happen. @input changes 
 
-
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
 
 10) Q: Difference between ngIf and hidden?
 
@@ -241,10 +235,29 @@ We used ngIf when element was not needed to improve performance.
 We used hidden when we only wanted to show or hide quickly without recreating the DOM.
 
 
-━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
 
+11) Q: What & Why use lazy loading?
 
-10) Q: Explain authentication flow in Angular.
+Answer:
+
+Lazy loading - Load only what is needed, when it is needed
+e.g: In my angular project many modules 
+Dashboard
+Admin Panel
+Reports
+when don't use lazy loading:-
+when the project run then load all the modules
+intial time taking too much
+if we use lazy loading:-
+only load one module Dashboard and when user click on Admin Panel then load admin module
+Fast Initial Load
+bundle size less
+better performance scalable and robust.
+
+==================================================================================================================================================
+
+12) Q: Explain authentication flow in Angular.
 
 Answer:
 
@@ -262,45 +275,9 @@ If token is invalid or expired, user is redirected to login page.
 
 This helped secure the application.
 
+==================================================================================================================================================
 
-━━━━━━━━━━━━━━━━━━━━━━
-
-
-━━━━━━━━━━━━━━━━━━━━━━
-
-12) Q: Why use trackBy in ngFor?
-
-Answer:
-
-Without trackBy, Angular re-renders the entire list whenever data changes.
-
-trackBy helps Angular identify changed items and only update required elements.
-
-This improves performance, especially for large lists or tables.
-
-
-━━━━━━━━━━━━━━━━━━━━━━
-
-13) Q: Difference between Subject and BehaviorSubject?
-
-Answer:
-
-Subject does not store previous values.
-
-If subscriber joins late, it misses old data.
-
-BehaviorSubject stores the latest value and immediately sends it to new subscribers.
-
-We mostly used BehaviorSubject for shared data like logged-in user info and application state.
-
-
-━━━━━━━━━━━━━━━━━━━━━━
-
-
-
-━━━━━━━━━━━━━━━━━━━━━━
-
-15) Q: Explain interceptor with real use case.
+13) Q: Explain interceptor with real use case.
 
 Answer:
 
@@ -315,23 +292,10 @@ In our project, we used interceptors for:
 
 This reduced duplicate code across components.
 
-
-━━━━━━━━━━━━━━━━━━━━━━
-
-16) Q: How did you create reusable components?
-
-Answer:
-
-We created reusable components for common UI like tables, modals, buttons, loaders, and forms.
-
-Instead of repeating code, we used @Input() for dynamic data and @Output() for events.
-
-This reduced duplicate code and improved maintainability.
+==================================================================================================================================================
 
 
-━━━━━━━━━━━━━━━━━━━━━━
-
-17) Q: Tell me one challenging bug you solved.
+14) Q: Tell me one challenging bug you solved.
 
 Answer:
 
@@ -342,39 +306,9 @@ We fixed it using debounceTime(), switchMap(), and proper unsubscribe logic.
 This improved performance and reduced server load.
 
 
-━━━━━━━━━━━━━━━━━━━━━━
+==================================================================================================================================================
 
-18) Q: Why use lazy loading?
-
-Answer:
-
-Lazy loading helps improve performance.
-
-Instead of loading the complete application initially, Angular loads modules only when needed.
-
-This reduces initial bundle size and improves loading speed.
-
-
-━━━━━━━━━━━━━━━━━━━━━━
-
-19) Q: Difference between Promise and Observable?
-
-Answer:
-
-Promise returns only one value.
-
-Observable can return multiple values over time.
-
-Observable supports operators like map, filter, debounceTime, retry, etc.
-
-Observable is cancellable, Promise is not.
-
-Angular mainly uses Observable for API handling.
-
-
-━━━━━━━━━━━━━━━━━━━━━━
-
-20) Q: How did you secure Angular application?
+15) Q: How did you secure Angular application?
 
 Answer:
 
@@ -389,46 +323,199 @@ We secured the application using:
 Sensitive pages were protected using guards, and unauthorized users could not access private routes.
 
 
-
-
-6) Q: How did you manage shared state in Angular?
-
-Answer:
-
-For shared state management, we mostly used BehaviorSubject inside services.
-
-BehaviorSubject stores the latest value and shares data between components.
-
-For example:
-
-If logged-in user information changed, we updated the BehaviorSubject and all subscribed components automatically received updated data.
-
-For small to medium projects, this worked well.
-
-For large enterprise projects, NgRx can also be used.
-
-
-
-
-
-
-
+==================================================================================================================================================
+==================================================================================================================================================
 
 
 1. What is the latest JavaScript version you have used?
 I have worked with modern JavaScript (ES6+) and used latest features like async/await, optional chaining, destructuring, spread operator, promises, modules, etc.
 
+==================================================================================================================================================
+
 2. Do you have exposure working in Vanilla JavaScript?
 Yes, I have worked with Vanilla JavaScript. Vanilla JavaScript means pure JavaScript without using any framework or library like Angular or React. I used it for DOM manipulation, event handling, form validation, and API calls.
+
+==================================================================================================================================================
 
 3. What are ES6 features?
 ECMAScript introduced many new JavaScript features that make code shorter, cleaner, and easier to write. I have used features like let/const, arrow functions, rest and spread operator, promise, async await.
 
+==================================================================================================================================================
+
 4. What latest Angular version have you used?
 I worked on Angular 16 and used features like routing, API integration, RxJS, lazy loading, change detection, lifecycle hooks, and component communication such as @Input, @Output, ViewChild, and ContentChild
 
+==================================================================================================================================================
+
 5. What are new features of Angular 21?
 I have worked on Angular 16, but I keep myself updated with newer versions. I know Angular 21 introduced improvements like Standalone Components, Signals, Zoneless Change Detection, Signal Forms, and performance improvements for faster and cleaner development
+
+==================================================================================================================================================
+
+6. Why do we use Observables in Angular applications?
+Observable gives data → subscribe receives data
+
+>> Observable
+it is a stream that emits data over time when an async operation (like API call) completes.
+
+>> What is subscribe()?
+Subscribe is a method used to execute an Observable and receive the emitted data when the asynchronous operation
+(like an API call) completes.
+Subscribe is used to get data from an Observable when the API response arrives.
+
+>> Why do we need to subscribe?
+In RxJS, Observables are lazy. So without subscribe(), the Observable will not execute,
+and no API call or data emission will happen.
+
+>> What are the handlers inside subscribe()?
+subscribe() can take three handlers:
+
+next → for data
+error → for error handling
+complete → when stream finishes
+
+==================================================================================================================================================
+
+7. Differenc b/w Promise and Observable
+| Feature   | Promise                | Observable                                   |
+| --------- | ---------------------- | -------------------------------------------- |
+| Value     | Returns a single value | Can emit multiple values over time           |
+| Execution | Executes immediately   | Lazy execution (starts only when subscribed) |
+| Cancel    | Cannot be cancelled    | Can be cancelled using `unsubscribe()`       |
+
+
+==================================================================================================================================================
+8. SUBJECT vs BEHAVIORSUBJECT 
+Subject does not store old values and works only for active subscribers,
+whereas BehaviorSubject stores the latest value and sends it to new subscribers immediately.
+
+1) SUBJECT ✅
+
+Rule:
+Subscribe first → Emit later
+Step 1:
+HomeComponent subscribe karta hai
+subscribe() ✅
+
+Step 2:
+Navbar dropdown change
+next('Admin') ✅
+
+Output:
+Admin ✅
+
+Reason:
+Home already listening tha.
+
+-----------------------------------
+Subject Fail Case ❌
+Step 1:
+Navbar pehle emit kar deta hai
+next('Admin') ❌
+
+Step 2:
+Home baad me subscribe karta hai
+subscribe()
+
+Output:
+No data ❌
+
+Reason:
+Subject old value store nahi karta.
+
+
+
+
+2) BEHAVIORSUBJECT ✅
+
+Rule:
+Emit first → Subscribe later
+(phir bhi chalega)
+
+Step 1:
+Navbar dropdown change
+next('Admin')
+BehaviorSubject latest value save kar leta hai ✅
+
+
+Step 2:
+Home baad me subscribe karta hai
+subscribe()
+
+Output:
+Admin ✅
+
+Reason:
+BehaviorSubject latest value memory me rakhta hai.
+
+Example: 
+
+// service.ts
+import { Subject, BehaviorSubject } from 'rxjs';
+
+// Subject
+roleSubject = new Subject<string>();
+
+// BehaviorSubject
+roleBehavior = new BehaviorSubject<string>('User');
+
+// Navbar Component (Emit Data)
+
+onRoleChange(role: string) {
+  // Emit data
+  this.roleSubject.next(role);
+
+  // Emit + Store latest value
+  this.roleBehavior.next(role);
+}
+
+// Home Component (Get Data)
+
+ngOnInit() {
+  // Subject
+  this.roleSubject.subscribe(data => {
+    console.log('Subject:', data);
+  });
+
+  // BehaviorSubject
+  this.roleBehavior.subscribe(data => {
+    console.log('Behavior:', data);
+  });
+
+}
+
+SUBJECT
+
+subscribe() first ✅
+next('Admin') later ✅
+
+Output:
+Admin
+
+
+Subject Fail ❌
+next('Admin') first
+subscribe() later
+
+Output:
+No data
+
+
+BEHAVIORSUBJECT
+
+next('Admin') first ✅
+subscribe() later ✅
+
+Output:
+Admin
+
+Reason:
+BehaviorSubject latest value save karta hai.
+
+==================================================================================================================================================
+
+
+
 
 6. What are directives?
 7. Explain lifecycle hooks in Angular.
@@ -456,9 +543,28 @@ I have worked on Angular 16, but I keep myself updated with newer versions. I kn
 29. What are route guards?
 30. How will you implement Page Not Found route?
 31. How to set query parameters?
-32. Remove duplicate elements from array
-    `arr = [1, 2, 2, 3, 4, 4, 5]`
-    Asked to implement using both built-in method and for loop.
 33. How will you mock a service?
 34. Have you used Angular testing frameworks?
 35. What deployment activities have you handled?
+
+
+1. What is the difference between AngularJS and Angular?
+2. Explain Angular lifecycle hooks.
+3. What is dependency injection in Angular?
+4. Difference between constructor and ngOnInit?
+5. What are services in Angular?
+6. What is lazy loading?
+7. Difference between template-driven and reactive forms?
+8. What is RxJS?
+9. Explain Observables vs Promises.
+10. What is change detection?
+11. Explain route guards.
+12. What is interceptor in Angular?
+13. How do you optimize Angular performance?
+14. What are standalone components?
+15. Difference between Subject, BehaviorSubject, ReplaySubject?
+16. How do you share data between components?
+17. Explain state management.
+18. How does async pipe work?
+19. How do you handle memory leaks?
+20. Explain your Angular project architecture.

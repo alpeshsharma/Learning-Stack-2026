@@ -1,0 +1,412 @@
+===================================================
+TOP 100 JAVASCRIPT INTERVIEW QUESTIONS WITH ANSWERS
+===================================================
+
+1. What is JavaScript?
+JavaScript is a high-level, interpreted scripting language used for web development.
+
+// 2. Difference between var, let, const?
+// var -> function scoped
+// let -> block scoped
+// const -> block scoped and cannot be reassigned
+
+// 3. What is hoisting?
+// Variables and functions move to top during compilation phase.
+
+console.log(a); // undefined
+var a = 10;
+
+// 4. Difference between == and ===
+// == checks value
+// === checks value + datatype
+
+5 == "5"   // true
+5 === "5"  // false
+
+// 5. Primitive data types?
+// String, Number, Boolean, Null, Undefined, Symbol, BigInt
+
+// 6. What is closure?
+function outer() {
+  let count = 0;
+
+  return function inner() {
+    count++;
+    return count;
+  };
+}
+
+// 7. What is lexical scope?
+// Inner function can access outer function variables.
+
+// 8. What is callback function?
+function greet(name, callback) {
+  callback(name);
+}
+
+// 9. What is callback hell?
+// Nested callbacks causing unreadable code.
+
+// 10. What is Promise?
+const p = new Promise((resolve, reject) => {
+  resolve("Success");
+});
+
+// 11. Promise states?
+// pending, fulfilled, rejected
+
+// 12. What is async/await?
+async function test() {
+  const data = await fetchData();
+}
+
+// 13. Synchronous vs Asynchronous?
+// Sync -> line by line
+// Async -> non-blocking
+
+// 14. What is Event Loop?
+// Handles async operations in JS.
+
+// 15. What is Call Stack?
+// Tracks function execution.
+
+// 16. Higher-order function?
+// Function taking another function as argument.
+
+// 17. map() vs forEach()
+// map returns new array
+// forEach does not
+
+// 18. filter() vs find()
+// filter returns all matches
+// find returns first match
+
+// 19. reduce() example
+const sum = [1,2,3].reduce((a,b)=>a+b,0);
+
+// 20. What is debounce?
+function debounce(fn, delay) {
+  let timer;
+
+  return function() {
+    clearTimeout(timer);
+    timer = setTimeout(fn, delay);
+  };
+}
+
+// 21. What is throttling?
+// Executes function after fixed interval.
+
+// 22. Debounce vs Throttle?
+// Debounce -> waits
+// Throttle -> limits frequency
+
+// 23. What is this keyword?
+const obj = {
+  name: "JS",
+  show() {
+    console.log(this.name);
+  }
+};
+
+// 24. Arrow vs Normal function?
+// Arrow has no own this.
+
+25. bind() example
+const boundFn = obj.show.bind(obj);
+
+26. call vs apply vs bind
+call -> comma args
+apply -> array args
+bind -> returns function
+
+27. What is prototype?
+Mechanism for inheritance.
+
+28. Prototypal inheritance?
+Object inherits from another object.
+
+29. null vs undefined?
+Undefined: means a variable is declared but value is not assigned.
+let name;
+console.log(name);       // undefined
+
+null means intentionally empty value.
+let user = null;
+console.log(user);    // null
+
+30. What is NaN?
+“NaN means Not a Number.”
+Number("abc"); NaN
+
+console.log("abc" - 10);      // NaN
+
+31. Deep copy vs shallow copy?
+shallow -> reference copy
+deep -> actual copy
+
+32. Deep clone object
+const clone = structuredClone(obj);
+
+33. Spread operator
+const arr2 = [...arr1];
+
+34. Rest operator
+function sum(...nums) {}
+
+35. Rest vs Spread?
+Rest collects
+Spread expands
+
+36. Destructuring
+const {name} = user;
+
+37. Template literals
+Template literals are a modern way to create strings in JavaScript using backticks instead of quotes.
+`Hello ${name}`
+
+1. Variable Interpolation
+const name = "Aman";
+const age = 25
+console.log(`My name is ${name} and I am ${age} years old.`);
+
+2. Expressions Inside String
+const a = 10;
+const b = 20;
+console.log(`Sum is ${a + b}`);
+
+3. Multi-line Strings
+Without template literals:
+const text = "Hello\nWorld";
+
+With template literals:
+const text = `Hello
+World`;
+
+38. Optional chaining
+Optional chaining prevents app crashes while accessing nested data
+user?.address?.city
+
+39. Nullish coalescing
+const val = data ?? "default";
+
+40. Currying
+function sum(a) {
+  return function(b) {
+    return a + b;
+  };
+}
+
+// 41. Memoization?
+// Caching function results.
+
+// 42. localStorage vs sessionStorage?
+// localStorage -> permanent
+// sessionStorage -> session only
+
+// 43. Cookies vs localStorage?
+// cookies sent to server
+// localStorage client only
+
+// 44. What is DOM?
+// Document Object Model
+
+// 45. innerHTML vs innerText?
+// innerHTML includes tags
+// innerText only text
+
+// 46. Event bubbling?
+// child -> parent
+
+// 47. Event capturing?
+// parent -> child
+
+// 48. Event delegation?
+// Parent handles child events.
+
+// 49. preventDefault vs stopPropagation?
+// preventDefault stops default action
+// stopPropagation stops bubbling
+
+// 50. setTimeout?
+setTimeout(() => {
+  console.log("Hello");
+}, 1000);
+
+// 51. setInterval?
+setInterval(() => {
+  console.log("Hi");
+}, 1000);
+
+// 52. setTimeout vs setInterval?
+// once vs repeatedly
+
+// 53. Strict mode
+"use strict";
+
+// 54. Temporal Dead Zone?
+// let and const inaccessible before initialization.
+
+// 55. Type coercion?
+"5" + 1 // "51"
+
+// 56. Falsy values?
+// false, 0, "", null, undefined, NaN
+
+// 57. IIFE
+(function() {
+  console.log("IIFE");
+})();
+
+// 58. Modules in JS?
+// Reusable code using import/export
+
+// 59. CommonJS vs ES Modules?
+// require vs import
+
+// 60. Garbage collection?
+// Automatic memory cleanup
+
+// 61. Memory leak?
+// Unused memory not released
+
+// 62. Generators
+function* gen() {
+  yield 1;
+}
+
+// 63. Symbol?
+// Unique immutable value
+
+// 64. BigInt
+const num = 123n;
+
+// 65. Function declaration vs expression?
+function a() {}
+const b = function(){};
+
+// 66. First-class function?
+// Functions treated as variables
+
+// 67. Pure function?
+// Same input same output
+
+// 68. Impure function?
+// Depends on external data
+
+// 69. Recursion
+function fact(n) {
+  if(n === 1) return 1;
+  return n * fact(n-1);
+}
+
+// 70. Infinite recursion?
+// Recursion without base condition
+
+// 71. Object.freeze()
+Object.freeze(obj);
+
+// 72. freeze vs seal?
+// freeze no changes
+// seal allows update only
+
+// 73. Object.create()
+const user = Object.create(null);
+
+// 74. Map vs Object?
+// Map supports any datatype keys
+
+// 75. WeakMap?
+// Weak reference object keys
+
+// 76. Set?
+const set = new Set([1,2,3]);
+
+// 77. WeakSet?
+// Weak object references only
+
+// 78. slice vs splice?
+// slice no mutation
+// splice mutates array
+
+// 79. Mutable vs Immutable?
+// mutable changes
+// immutable does not
+
+// 80. Default parameter
+function test(a = 0) {}
+
+// 81. Short-circuit evaluation
+true || false
+
+// 82. What is JSON?
+// JavaScript Object Notation
+
+// 83. JSON.stringify vs JSON.parse
+JSON.stringify(obj);
+JSON.parse(json);
+
+// 84. fetch API
+fetch("/api");
+
+// 85. fetch vs axios?
+// axios auto parses JSON
+
+// 86. What is CORS?
+// Cross-Origin Resource Sharing
+
+// 87. Same-origin policy?
+// Restricts cross-domain access
+
+// 88. async vs defer?
+// async executes immediately
+// defer executes after HTML parsing
+
+// 89. window vs document?
+// window global object
+// document DOM object
+
+// 90. What is BOM?
+// Browser Object Model
+
+// 91. Web APIs?
+// fetch, DOM, setTimeout etc.
+
+// 92. Singleton pattern?
+// Single object instance
+
+// 93. Factory function?
+function createUser(name) {
+  return { name };
+}
+
+// 94. Class in JS
+class User {
+  constructor(name) {
+    this.name = name;
+  }
+}
+
+// 95. Class vs constructor function?
+// Class is syntactic sugar
+
+// 96. Inheritance?
+class Admin extends User {}
+
+// 97. Encapsulation?
+// Binding data and methods
+
+// 98. Polymorphism?
+// Same method different behavior
+
+// 99. Abstraction?
+// Hiding implementation details
+
+// 100. Execution context?
+// Variable environment + scope + this
+
+====================================================================================================================================================
+====================================================================================================================================================
+====================================================================================================================================================
+====================================================================================================================================================
+

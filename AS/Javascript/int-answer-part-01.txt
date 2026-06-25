@@ -15,7 +15,7 @@
 15. What is Call Stack?
 
 Ans: 16 
-================================================
+==================================================================================================================================================
 Higher-Order Function
 A higher-order function is a function that takes another function as an argument or returns a function.
 map & filter ----> these are also higher order function.
@@ -43,7 +43,7 @@ function outerFunction(){
 const result = outerFunction();
 result();                                   // hi amit
 
-=================================================
+==================================================================================================================================================
 
 Ans 17: map() vs forEach()
 
@@ -76,7 +76,7 @@ numbers.forEach((num) => {
 });                                       // 2 4 6
 
 
-=====================================================
+==================================================================================================================================================
 
 Ans 18: filter() vs find()
 
@@ -316,3 +316,14 @@ Use case:
 Difference:
 - localStorage/sessionStorage → client-side only
 - Cookies → browser + server communication
+
+Ans: 
+IIFE (Immediately Invoked Function Expression) is a JavaScript function that executes immediately after it is created.
+don't need to call like a normal function.
+
+(function(){
+    // code
+})();
+
+Ans:
+Garbage Collection is an automatic memory management process in JavaScript that removes unused data/objects from memory to free up space.

@@ -7,6 +7,273 @@ Maintainability:- Easier to debug and update
 Dependency Injection - Angular has a built-in DI system.
 Instead of a class creating its own dependencies, those dependencies are “injected” into it from outside.
 
-when you use any service and use in component (by the help of constructor) its means injection
+whenever we use any services in any of component (by the help of constructor) its means injection or inject.
+import {UserService} from './service/UserService';
+constructor(private userService: UserService) {}
+
 whatever process happen bewteen service and component its means injecting
 after creating dependencies and provide to the component that part will be called injector
+
+
+1. Service
+
+// user.service.ts
+import { Injectable } from '@angular/core';
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {
+
+  getUser() {
+    return 'Rahul';
+  }
+
+}
+
+2. Component
+// user.component.ts
+
+import { Component } from '@angular/core';
+import { UserService } from './user.service';
+
+@Component({
+  selector: 'app-user',
+  template: `<h1>{{name}}</h1>`
+})
+export class UserComponent {
+
+  name = '';
+
+  constructor(private userService: UserService) {
+    this.name = this.userService.getUser();
+  }
+
+}
+
+
+
+============================================================================================
+
+===========================
+ANGULAR DEPENDENCY INJECTION (DI)
+===========================
+
+1. Dependency Kya Hai?
+----------------------
+Jo cheez kisi class/component ko kaam karne ke liye chahiye hoti hai,
+use Dependency kehte hain.
+
+Example:
+
+UserComponent ko UserService chahiye.
+
+UserService = Dependency
+
+
+2. Service Kya Hai?
+-------------------
+Service ek class hoti hai jisme business logic, API calls,
+data sharing etc. likhte hain.
+
+Example:
+
+export class UserService {
+  getUser() {
+    return "Rahul";
+  }
+}
+
+
+3. Injection Kya Hai?
+---------------------
+Jab Angular service ko component ke constructor me provide karta hai,
+use Injection kehte hain.
+
+Example:
+
+constructor(private userService: UserService) {}
+
+Yaha UserService inject ho rahi hai.
+
+
+4. Dependency Injection (DI) Kya Hai?
+-------------------------------------
+Jab koi component apni dependency khud create nahi karta
+aur Angular us dependency ko provide karta hai,
+use Dependency Injection kehte hain.
+
+Without DI:
+
+userService = new UserService();
+
+With DI:
+
+constructor(private userService: UserService) {}
+
+
+5. Injector Kya Hai?
+--------------------
+Injector Angular ka system hai jo:
+
+1. Service ka object banata hai
+2. Store karta hai
+3. Jahan zaroorat ho wahan provide karta hai
+
+Flow:
+
+Service
+   ↓
+Injector
+   ↓
+Component
+
+
+6. @Injectable() Kya Hai?
+-------------------------
+Ye Angular ko batata hai:
+
+"Is class ko DI system ke through use kiya ja sakta hai."
+
+Example:
+
+@Injectable()
+export class UserService {}
+
+
+7. providedIn:'root' Kya Hai?
+-----------------------------
+Ye Angular ko bolta hai:
+
+"Is service ko poore application me available rakho."
+
+Example:
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {}
+
+Ab Angular service ko Root Injector me register kar deta hai.
+
+
+8. Root Injector Kya Hai?
+-------------------------
+Ye application ka main injector hota hai.
+
+App
+ |
+ ├─ HomeComponent
+ ├─ ProfileComponent
+ └─ AboutComponent
+
+Sab isi Root Injector se service lete hain.
+
+
+9. Singleton Kya Hai?
+---------------------
+Singleton ka matlab:
+
+"Pure application me service ka sirf ek hi object banana."
+
+Example:
+
+@Injectable({
+  providedIn: 'root'
+})
+export class UserService {}
+
+Ab:
+
+HomeComponent
+ProfileComponent
+AboutComponent
+
+Sabko same UserService object milega.
+
+Isliye providedIn:'root' wali service by default Singleton hoti hai.
+
+
+10. Complete Flow
+-----------------
+
+UserComponent Load
+        ↓
+UserService Chahiye
+        ↓
+Angular Injector Check Karta Hai
+        ↓
+UserService Ka Instance Banata Hai
+        ↓
+Constructor Me Pass Karta Hai
+        ↓
+Component Use Karta Hai
+
+
+===========================
+INTERVIEW DEFINITIONS
+===========================
+
+Dependency:
+-----------
+A dependency is an object or class that another class/component needs to perform its work.
+
+Example:
+UserService is a dependency of UserComponent.
+
+
+Service:
+--------
+A service is a class that contains reusable business logic, API calls, and data-sharing functionality.
+
+
+Injection:
+----------
+Providing a dependency to a class through its constructor is called Injection.
+
+Example:
+constructor(private userService: UserService) {}
+
+
+Dependency Injection (DI):
+--------------------------
+Dependency Injection is a design pattern in which a class does not create its own dependencies. Instead, Angular provides those dependencies from outside.
+
+
+Injector:
+---------
+An Injector is Angular's mechanism that creates and provides dependencies whenever they are required.
+
+
+@Injectable():
+--------------
+@Injectable() tells Angular that this class can involved in the Dependency Injection system and can be injected where needed.
+
+
+providedIn: 'root':
+-------------------
+providedIn: 'root' registers the service with the Root Injector and makes it available throughout the entire application.
+
+
+Singleton:
+----------
+A Singleton is a design pattern where only one instance of a service is created and shared across the entire application.
+
+
+===========================
+1-LINE REVISION
+===========================
+
+Service = Dependency
+
+Constructor Injection = Injection
+
+Angular's DI mechanism = Dependency Injection
+
+Injector = Creates and provides services
+
+@Injectable() = Makes a class injectable
+
+providedIn: 'root' = Available throughout the application
+
+One shared instance = Singleton

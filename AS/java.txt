@@ -1,0 +1,298 @@
+OOPS Concepts:
+OOPS in Java stands for Object-Oriented Programming System,
+It is a programming approach where we organize code using objects and classes
+OOPS helps make code reusable, secure, maintainable, and easy to manage.
+
+Object: 
+Object is the instance of class.
+Object is the real world entity.
+
+Class: class is the blue print of object.
+
+constructor: is a special type of method object is created using new keyword and it is used to 
+initalize the object.
+
+this keyword: is refer to the current object that is currenly executing the function.
+Example 1:
+public class Main {
+    public static void main (String [] args){
+        System.out.println("running");
+    }
+}
+
+Example 2:
+
+class Student {
+    String name;
+    String age;
+    
+    void Study(){
+        System.out.println("Student is studying");
+    }
+}
+
+public class Main {
+    public static void main (String [] args){
+        Student std = new Student();
+        std.Study();
+    }
+}
+
+Example 3:
+class Car{
+    String name;
+    String color;
+    
+     Car(String name, String color){
+        this.name = name;
+        this.color = color;
+    }
+    
+    void display(){
+        System.out.println(name + " " + color);
+    }
+}
+
+public class Main {
+    public static void main(String [] args){
+       Car c1 = new Car("THAR", "WHITE");
+       c1.display();
+    }
+}
+
+ENCAPSULATION:-
+Wrapping data and methods together into a single unit is called encapsulation.
+
+
+INHERITANCE:- 
+Inheritance is an OOP concept where one class acquires the properties and methods of another class.
+In Java, we use the extends keyword.
+
+class Animal {
+    void eat() {
+        System.out.println("Animal is eating");
+    }
+}
+
+class Dog extends Animal {
+
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat(); // inherited method
+    }
+}
+
+o/p = Animal is eating
+
+Types of Inheritance in Java
+There are 5 types of inheritance: ===>
+
+1) Single Inheritance: Single inheritance is when one child class inherits from one parent class.
+
+class Animal {
+    void eat() {
+        System.out.println("Animal eats food");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat();
+        d.bark();
+    }
+}
+
+
+2) Multilevel Inheritance: Multilevel inheritance occurs when one class inherits another class, and a third class inherits the second class.
+class Animal {
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Puppy extends Dog {
+    void weep() {
+        System.out.println("Puppy weeps");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Puppy p = new Puppy();
+        p.eat();
+        p.bark();
+        p.weep();
+    }
+}
+
+o/p:
+Animal eats
+Dog barks
+Puppy weeps
+
+
+
+3) Hierarchical Inheritance: Hierarchical inheritance means multiple child classes inherit the same parent class.
+       Animal
+      /      \
+    Dog      Cat
+
+class Animal {
+    void eat() {
+        System.out.println("Animal eats");
+    }
+}
+
+class Dog extends Animal {
+    void bark() {
+        System.out.println("Dog barks");
+    }
+}
+
+class Cat extends Animal {
+    void meow() {
+        System.out.println("Cat meows");
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Dog d = new Dog();
+        d.eat();
+        d.bark();
+
+        Cat c = new Cat();
+        c.eat();
+        c.meow();
+    }
+}
+
+o/p:
+Animal eats
+Dog barks
+Animal eats
+Cat meows
+
+4) Multiple Inheritance: When One child class inherits multiple parent classes.
+Java does NOT support multiple inheritance using classes
+class A {
+}
+
+class B {
+}
+
+class C extends A, B {
+}
+This gives error.
+Because of Diamond Problem (ambiguity).
+If both parent classes have same method:
+class A {
+    void show() {
+        System.out.println("A");
+    }
+}
+
+class B {
+    void show() {
+        System.out.println("B");
+    }
+}
+
+Now child gets confused:
+
+Which show() should be called?
+A or B?
+This confusion is called the Diamond Problem.
+
+but it can be achieved using interfaces.
+
+interface A {
+    void show();
+}
+
+interface B {
+    void display();
+}
+
+class C implements A, B {
+    public void show() {
+        System.out.println("Show method");
+    }
+
+    public void display() {
+        System.out.println("Display method");
+    }
+}
+
+Java does not support multiple inheritance through classes to avoid ambiguity, but it can be achieved using interfaces.
+
+Polymorphism:-
+Polymorphism means “many forms.”
+One thing → many forms
+
+Ek person:
+Office → Employee
+Home → Son
+Friends ke sath → Friend
+
+Person same hai, behavior change ho raha hai.
+
+Polymorphism means one thing many forms. means same method but different behavior.
+
+There are 2 types:
+Compile-time Polymorphism
+(Method Overloading)
+Run-time Polymorphism
+(Method Overriding)
+
+1. Compile-Time Polymorphism
+(Method Overloading)
+
+Same method name
+But different parameters
+
+class Calculator {
+    int add(int a, int b) {
+        return a + b;
+    }
+
+    int add(int a, int b, int c) {
+        return a + b + c;
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Calculator c = new Calculator();
+        System.out.println(c.add(10, 20));
+        System.out.println(c.add(10, 20, 30));
+    }
+}
+
+
+
+
+
+
+
+
+
+
+
+
